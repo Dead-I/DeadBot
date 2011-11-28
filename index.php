@@ -21,13 +21,13 @@ set_time_limit(0);
 // Start the class the bot will run from
 class IRCBot {
 	
-	function __construct($server, $port, $nick, $indent, $name, $channels) {
+	function __construct($server, $port, $nick, $indent, $name, $pass, $channels) {
 		$this->socket = fsockopen($server, $port);
-		$this->auth($nick, $indent, $name);
+		$this->auth($nick, $indent, $name, $pass);
 		$this->join($channels);
 	}
 	
-	function auth($nick, $indent, $name) {
+	function auth($nick, $indent, $name, $pass) {
 		$this->raw('USER $nick $indent $nick :$name');
 		$this->raw('NICK $nick');
 		$this->raw('NS IDENTIFY $pass');
@@ -40,7 +40,7 @@ class IRCBot {
 		}
 	}
 	
-	function bot($installed, $server, $port, $nick, $indent, $name, $channels, $physical) {
+	function bot($installed, $server, $port, $nick, $indent, $name, $pass, $channels, $physical) {
 		$data = fgets($this->socket, 522);
 		echo nl2br($data);
 		flush();
@@ -49,7 +49,7 @@ class IRCBot {
 		
 		if ($this->$ex[0] == 'PING') $this->raw('PONG');
 		
-		$this->bot($installed, $server, $port, $nick, $indent, $name, $channels, $physical);
+		$this->bot($installed, $server, $port, $nick, $indent, $name, $pass, $channels, $physical);
 	}
 	
 	function raw($command) {
