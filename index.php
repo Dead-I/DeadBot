@@ -59,4 +59,4 @@ class IRCBot {
 }
 
 // Start up the bot
-$bot = new IRCBot();
+$bot = new IRCBot($server, $port, $nick, $indent, $name, $pass, $channels);
