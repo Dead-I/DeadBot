@@ -28,6 +28,7 @@ class IRCBot {
 		$this->socket = fsockopen($config["server"], $config["port"]);
 		$this->auth($config);
 		$this->join($config);
+		$this->bot($config);
 	}
 	
 	function auth($config) {
