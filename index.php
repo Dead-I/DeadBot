@@ -25,7 +25,7 @@ class IRCBot {
 	var $ex = array();
 	
 	function __construct($config) {
-		$this->socket = fsockopen('irc.x10hosting.com', 6667);
+		$this->socket = fsockopen($config["server"], $config["port"]);
 		$this->auth($config);
 		$this->join($config);
 		$this->bot($config);
