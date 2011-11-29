@@ -53,7 +53,7 @@ class IRCBot {
 		
 		if ($this->$ex[0] == 'PING') $this->raw('PONG');
 		
-		$this->bot($config);
+		bot($config);
 		
 		function raw($command) {
 			fputs($this->socket, $command.'\r\n');
