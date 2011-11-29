@@ -15,61 +15,52 @@
 // Get the configuration
 require 'config.php';
 
+// Get the functions
+require 'functions.php';
+
 // Ensure that the bot stays alive
 set_time_limit(0);
 
-// Start the class the bot will run from
-class IRCBot {
-	
-	var $data;
-	var $socket;
-	var $ex = array();
-	
-	function __construct($config) {
-		$this->socket = fsockopen($config["server"], $config["port"]);
-		$this->auth($config);
-		$this->join($config);
-		$this->bot($config);
-	}
-	
-	function auth($config) {
-		$this->raw('USER '.$config["nick"].' '.$config["indent"].' '.$config["nick"].' :'.$config["name"]);
-		$this->raw('NICK '.$config["nick"]);
-		$this->raw('NS IDENTIFY '.$config["pass"]);
-		
-		$this->data = fgets($this->socket, 522);
-		$this->ex = explode(' ', $this->data);
-		if ($this->ex[0] == 'PING') $this->raw('PONG');
-	}
-	
-	function join($config) {
-		$channel = explode(',', $config["channels"]);
-		foreach($channel as $joinchannel) {
-			$this->raw('JOIN '.$joinchannel);
-		}
-		
-		$this->data = fgets($this->socket, 522);
-		$this->ex = explode(' ', $this->data);
-		if ($this->ex[0] == 'PING') $this->raw('PONG');
-	}
-	
-	function bot($config) {
-		$this->data = fgets($this->socket, 522);
-		echo nl2br($this->data);
-		flush();
-		
-		$this->ex = explode(' ', $this->data);
-		if ($this->ex[0] == 'PING') $this->raw('PONG');
-		
-		$this->bot($config);
-	}
-	
-	function raw($command) {
-		fputs($this->socket, $command.'\n');
-		echo $command.'\r\n';
-	}
-	
+// Connect to the IRC server
+$socket = fsockopen($server, $port);
+
+// Default configuration variables
+if (!isset($installed)) {
+	$nick = 'DeadBot_{rand()}';
+	$name = 'DeadBot';
 }
 
-// Start up the bot
-$bot = new IRCBot($config);
+// Authorize the bot
+raw('USER {$nick} {$name} {$name} :{$nick}');
+raw('NICK {$nick}');
+if (isset($pass)) raw('NS IDENTIFY {$password}');
+
+// Join the channels
+$channel = explode(',', $channels);
+foreach($channel as $join) {
+	raw('JOIN {$join}');
+}
+
+// Start looping
+while(1) {
+	while($data = fgets($socket, 522)) {
+		
+		// Run install script if not installed
+		if (!isset($installed)) {
+			
+			// All the install scripts are in a separate file
+			require 'install.php';
+			
+		}else{
+			
+			// Separate all the data that has been received
+			$ex = explode(' ', $data);
+			
+			// Play PING PONG with the server to keep the bot alive
+			if($ex[0] == "PING") raw("PONG {$ex[1]}");
+			
+		}
+		
+		
+	}
+}
