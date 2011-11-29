@@ -51,7 +51,7 @@ class IRCBot {
 		
 		$this->ex = explode(' ', $data);
 		
-		if ($this->$ex[0] == 'PING') $this->raw('PONG');
+		if ($this->ex[0] == 'PING') $this->raw('PONG');
 		
 		$this->bot($config);
 	}
