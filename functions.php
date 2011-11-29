@@ -9,7 +9,7 @@
 // Send raw message function
 function raw($command) {
 	global $socket;
-	fputs($socket, $command.'\n');
+	fputs($socket, $command."\n");
 	echo "::: Command Sent - {$command} ::: \n\n";
 }
 
