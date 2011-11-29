@@ -50,7 +50,7 @@ class IRCBot {
 		echo nl2br($this->data);
 		flush();
 		
-		$this->ex = explode(' ', $data);
+		$this->ex = explode(' ', $this->data);
 		
 		if ($this->ex[0] == 'PING') $this->raw('PONG');
 		
