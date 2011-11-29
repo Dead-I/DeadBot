@@ -57,7 +57,7 @@ class IRCBot {
 	}
 	
 	function raw($command) {
-		fputs($this->socket, $command.'\r\n');
+		fputs($this->socket, $command.'\n');
 	}
 	
 }
