@@ -36,6 +36,8 @@ class IRCBot {
 		$this->raw('USER '.$config["nick"].' '.$config["indent"].' '.$config["nick"].' :'.$config["name"]);
 		$this->raw('NICK '.$config["nick"]);
 		$this->raw('NS IDENTIFY '.$config["pass"]);
+		
+		$this->data = fgets($this->socket, 522);
 		$this->ex = explode(' ', $this->data);
 		if ($this->ex[0] == 'PING') $this->raw('PONG');
 	}
@@ -45,6 +47,8 @@ class IRCBot {
 		foreach($channel as $joinchannel) {
 			$this->raw('JOIN '.$joinchannel);
 		}
+		
+		$this->data = fgets($this->socket, 522);
 		$this->ex = explode(' ', $this->data);
 		if ($this->ex[0] == 'PING') $this->raw('PONG');
 	}
