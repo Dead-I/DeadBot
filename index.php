@@ -33,9 +33,9 @@ class IRCBot {
 	}
 	
 	function auth($config) {
-		$this->raw('USER $config["nick"] $config["indent"] $config["nick"] :$config["name"]');
-		$this->raw('NICK $config["nick"]');
-		$this->raw('NS IDENTIFY $config["pass"]');
+		$this->raw('USER '.$config["nick"].' '.$config["indent"].' '.$config["nick"].' :'.$config["name"]);
+		$this->raw('NICK '.$config["nick"]);
+		$this->raw('NS IDENTIFY '.$config["pass"]);
 	}
 	
 	function join($config) {
@@ -59,7 +59,7 @@ class IRCBot {
 	
 	function raw($command) {
 		fputs($this->socket, $command.'\n');
-		echo $command.'\n';
+		echo $command.'\r\n';
 	}
 	
 }
