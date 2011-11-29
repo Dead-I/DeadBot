@@ -36,6 +36,9 @@ if (!isset($installed)) {
 	$name = "DeadBot";
 }
 
+// Sleep for a second to give time
+sleep(1);
+
 // Authorize the bot
 raw("USER {$nick} {$name} {$name} :{$nick}");
 raw("NICK {$nick}");
