@@ -38,14 +38,14 @@ if (!isset($installed)) {
 }
 
 // Authorize the bot
-raw("USER {$nick} {$name} {$name} :{$nick}");
-raw("NICK {$nick}");
-if (isset($pass)) raw("NS IDENTIFY {$pass}");
+fputs($socket, "USER {$nick} {$name} {$name} :{$nick}\n");
+fputs($socket, "NICK {$nick}\n");
+if (isset($pass)) fputs($socket, "NS IDENTIFY {$pass}\n");
 
 // Join the channels
 $channel = explode(",", $channels);
 foreach($channel as $join) {
-	raw("JOIN {$join}");
+	fputs($socket, "JOIN {$join}\n");
 }
 
 // Echo the success message to confirm DeadBot"s operation
@@ -76,7 +76,7 @@ while(1) {
 			$ex = explode(" ", $data);
 			
 			// Play PING PONG with the server to keep the bot alive
-			if($ex[0] == "PING") raw("PONG {$ex[1]}");
+			if($ex[0] == "PING") fputs($socket, "PONG {$ex[1]}\n");
 			
 			// Get the command which was sent
 			$command = str_replace(array(chr(10), chr(13)), '', $ex[3]);
