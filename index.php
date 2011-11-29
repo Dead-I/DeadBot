@@ -37,9 +37,6 @@ if (!isset($installed)) {
 	$name = "DeadBot";
 }
 
-// Sleep for a second to give time
-sleep(1);
-
 // Authorize the bot
 raw("USER {$nick} {$name} {$name} :{$nick}");
 raw("NICK {$nick}");
@@ -80,6 +77,9 @@ while(1) {
 			
 			// Play PING PONG with the server to keep the bot alive
 			if($ex[0] == "PING") raw("PONG {$ex[1]}");
+			
+			// Get the command which was sent
+			$command = str_replace(array(chr(10), chr(13)), '', $ex[3]);
 			
 		}
 		
