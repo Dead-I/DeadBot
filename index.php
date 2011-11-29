@@ -21,6 +21,7 @@ set_time_limit(0);
 // Start the class the bot will run from
 class IRCBot {
 	
+	var $data;
 	var $socket;
 	var $ex = array();
 	
@@ -45,8 +46,8 @@ class IRCBot {
 	}
 	
 	function bot($config) {
-		$data = fgets($this->socket, 522);
-		echo nl2br($data);
+		$this->data = fgets($this->socket, 522);
+		echo nl2br($this->data);
 		flush();
 		
 		$this->ex = explode(' ', $data);
