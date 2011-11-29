@@ -27,3 +27,15 @@ function normal($command, $sendchannel) {
 	echo "::: Message Sent in {$sendchannel} - {$command} ::: \n\n";
 	
 }
+
+// A find function - useful in many cases
+function find($delimiter, $string) {
+	$string = $string.'.';
+	$explode = explode($delimiter, $string);
+	if (isset($explode[1])) {
+		return 1;
+	}else{
+		return 2;
+	}
+	
+}
