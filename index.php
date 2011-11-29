@@ -39,7 +39,7 @@ if (!isset($installed)) {
 // Authorize the bot
 raw("USER {$nick} {$name} {$name} :{$nick}");
 raw("NICK {$nick}");
-if (isset($pass)) raw("NS IDENTIFY {$password}");
+if (isset($pass)) raw("NS IDENTIFY {$pass}");
 
 // Join the channels
 $channel = explode(",", $channels);
