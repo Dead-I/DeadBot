@@ -21,6 +21,9 @@ set_time_limit(0);
 // Start the class the bot will run from
 class IRCBot {
 	
+	var $socket;
+	var $ex = array();
+	
 	function __construct($config) {
 		$this->socket = fsockopen($config["server"], $config["port"]);
 		$this->auth($config);
