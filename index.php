@@ -68,6 +68,9 @@ while(1) {
 			
 		}else{
 			
+			// Flush data
+			flush();
+			
 			// Separate all the data that has been received
 			$ex = explode(" ", $data);
 			
