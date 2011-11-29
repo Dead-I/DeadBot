@@ -71,6 +71,9 @@ while(1) {
 			// Flush data
 			flush();
 			
+			// Debugging feature
+			if ($argv[1] == 'debug') echo nl2br($data);
+			
 			// Separate all the data that has been received
 			$ex = explode(" ", $data);
 			
