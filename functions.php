@@ -10,7 +10,7 @@
 function raw($command) {
 	global $socket;
 	fputs($socket, $command."\n");
-	echo "::: Command Sent - {$command} ::: \n\n";
+	echo "::: Command Sent - ".trim($command)." ::: \n\n";
 }
 
 // Send normal message with recipient function
@@ -44,15 +44,6 @@ function find($delimiter, $string) {
 
 // Retrieve commands, admins and hostmasks
 function sync() {
-	if ($handle = opendir('cmd/')) {
-		while (false !== ($file = readdir($handle))) {
-			if ($file != "." && $file != "..") {
-				$commands = $commands.$file.",";
-			}
-		}	
-	closedir($handle);
-	}
-	
 	$admins = file_get_contents('admin.txt');
 	$hostmasks = file_get_contents('hostmasks.txt');
 }

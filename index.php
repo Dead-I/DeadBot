@@ -101,14 +101,10 @@ while(1) {
 			
 			// If the command was found, execute the external command
 			if ($direct == strtolower($nick) || $direct == strtolower($nick).':' || $direct == $shortdirect) {
-				if (find($command, $commands) == 1) {
-					include 'cmd/{$command}';
+				if (file_exists("cmd/{$command}")) {
+					eval(file_get_contents("cmd/{$command}"));
 				}else{
 					send("Sorry, the command requested is invalid. Please run '{$nick} help' to see a list of commands.");
-				}
-				
-				if ($command == 'help') {
-					send($commands);
 				}
 			}
 			
