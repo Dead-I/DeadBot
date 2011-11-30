@@ -86,6 +86,14 @@ while(1) {
 			// Play PING PONG with the server to keep the bot alive
 			if($ex[0] == "PING") raw("PONG {$ex[1]}");
 			
+			// Detect if the message was directed toward someone
+			$directionexplode = explode(' @ ', $data);
+			if (!isset($directionexplode[1])) {
+				$recipient = substr($userinfo[0], 1);
+			}else{
+				$recipient = trim($directionexplode[1]);
+			}
+			
 			// Get the direct and command which was sent
 			$direct = substr(strtolower(str_replace(array(chr(10), chr(13)), '', $ex[3])), 1);
 			$command = strtolower(str_replace(array(chr(10), chr(13)), '', $ex[4]));
@@ -95,7 +103,7 @@ while(1) {
 				if (find($command, $commands) == 1) {
 					include 'cmd/{$command}';
 				}else{
-					send("Sorry, the command requested is invalid. Please run '{$nick} help' to see a list of commands.");
+					send("Sorry, the command requested is invalid. Please run '{$nick} help' to see a list of commands.", $ex[2]);
 				}
 			}
 			
