@@ -87,7 +87,7 @@ while(1) {
 			if($ex[0] == "PING") raw("PONG {$ex[1]}");
 			
 			// Get the direct and command which was sent
-			$direct = strtolower(str_replace(array(chr(10), chr(13)), '', $ex[3]));
+			$direct = substr(strtolower(str_replace(array(chr(10), chr(13)), '', $ex[3])), 1);
 			$command = strtolower(str_replace(array(chr(10), chr(13)), '', $ex[4]));
 			
 			// If the command was found, execute the external command
