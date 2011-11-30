@@ -47,7 +47,7 @@ function sync() {
 	if ($handle = opendir('cmd/')) {
 		while (false !== ($file = readdir($handle))) {
 			if ($file != "." && $file != "..") {
-				$commands .= '{$file},';
+				$commands = $commands.$file.",";
 			}
 		}	
 	closedir($handle);
