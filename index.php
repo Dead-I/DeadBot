@@ -52,7 +52,7 @@ if (isset($pass)) raw("NS IDENTIFY {$pass}");
 $channel = explode(",", $channels);
 foreach($channel as $join) {
 	raw("JOIN {$join}");
-	sleep(1);
+	sleep(2);
 	normal("DeadBot {$version} Loaded", $join);
 }
 

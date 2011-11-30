@@ -17,14 +17,14 @@ function raw($command) {
 function send($command, $sendchannel) {
 	global $socket;
 	fputs($socket, "PRIVMSG {$sendchannel} {$recipient} :{$command}\n");
-	echo "::: Message Sent to {$recipient} in {$sendchannel} - {trim($command)} ::: \n\n";
+	echo "::: Message Sent to {$recipient} in {$sendchannel} - ".trim($command)." ::: \n\n";
 }
 
 // Send normal message without recipient function
 function normal($command, $sendchannel) {
 	global $socket;
 	fputs($socket, "PRIVMSG {$sendchannel} :{$command}\n");
-	echo "::: Message Sent in {$sendchannel} - {trim($command)} ::: \n\n";
+	echo "::: Message Sent in {$sendchannel} - ".trim($command)." ::: \n\n";
 	
 }
 
