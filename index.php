@@ -12,6 +12,9 @@
 // To change configuration, edit config.php.
 // Thank you for using DeadBot!
 
+// Get the version of the bot - please leave this intact
+$version = '1.0 STABLE';
+
 // Output an initializing text - helpful for debugging
 echo "\nInitializing";
 
@@ -46,12 +49,14 @@ if (isset($pass)) raw("NS IDENTIFY {$pass}");
 $channel = explode(",", $channels);
 foreach($channel as $join) {
 	raw("JOIN {$join}");
+	sleep(1);
+	normal("DeadBot {$version} Loaded", $join);
 }
 
 // Echo the success message to confirm DeadBot"s operation
 echo "###############################\n";
 echo "##### DeadBot PHP IRC Bot #####\n";
-echo "## Version 1.0 Stable Loaded ##\n";
+echo "## Version {$version} Loaded ##\n";
 echo "###############################\n\n";
 
 // Start looping
