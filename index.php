@@ -30,6 +30,9 @@ echo "...\n\n";
 // Ensure that the bot stays alive
 set_time_limit(0);
 
+// Synchronize the admins, hostmasks and commands
+sync();
+
 // Connect to the IRC server
 //$socket = fsockopen($server, $port);
 $socket = fsockopen("irc.x10hosting.com", 6667);
@@ -83,8 +86,19 @@ while(1) {
 			// Play PING PONG with the server to keep the bot alive
 			if($ex[0] == "PING") raw("PONG {$ex[1]}");
 			
-			// Get the command which was sent
-			$command = str_replace(array(chr(10), chr(13)), '', $ex[3]);
+			// Get the direct and command which was sent
+			$direct = strtolower(str_replace(array(chr(10), chr(13)), '', $ex[3]));
+			$command = strtolower(str_replace(array(chr(10), chr(13)), '', $ex[4]));
+			
+			// If the command was found, execute the external command
+			if ($direct == strtolower($nick) || $direct == strtolower($nick).':' || $direct == $shortdirect) {
+				if (find($command, $commands) == 1) {
+					include 'cmd/{$command}';
+				}else{
+					send("Sorry, the command requested is invalid. Please run '{$nick} help' to see a list of commands.");
+				}
+			}
+			
 			
 			// If DeadBot is kicked
 			if ($ex[1] == 'KICK' && $ex[3] == $nick) {

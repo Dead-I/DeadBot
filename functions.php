@@ -17,14 +17,14 @@ function raw($command) {
 function send($command, $sendchannel) {
 	global $socket;
 	fputs($socket, "PRIVMSG {$sendchannel} {$recipient} :{$command}\n");
-	echo "::: Message Sent to {$recipient} in {$sendchannel} - {$command} ::: \n\n";
+	echo "::: Message Sent to {$recipient} in {$sendchannel} - {trim($command)} ::: \n\n";
 }
 
 // Send normal message without recipient function
 function normal($command, $sendchannel) {
 	global $socket;
 	fputs($socket, "PRIVMSG {$sendchannel} :{$command}\n");
-	echo "::: Message Sent in {$sendchannel} - {$command} ::: \n\n";
+	echo "::: Message Sent in {$sendchannel} - {trim($command)} ::: \n\n";
 	
 }
 
@@ -38,4 +38,19 @@ function find($delimiter, $string) {
 		return 2;
 	}
 	
+}
+
+// Retrieve commands, admins and hostmasks
+function sync() {
+	if ($handle = opendir('cmd/')) {
+		while (false !== ($file = readdir($handle))) {
+			if ($file != "." && $file != "..") {
+				$commands .= '{$file},';
+			}
+		}	
+	closedir($handle);
+	}
+	
+	$admins = file_get_contents('admin.txt');
+	$hostmasks = file_get_contents('hostmasks.txt');
 }
