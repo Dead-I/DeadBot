@@ -1,0 +1,9 @@
+if (isset(strtolower($ex[5]))) {
+	if ($admin == 1) {
+		raw("CS {$ex[5]} {$ex[2]}");
+	}else{
+		send("Sorry, only the bot admins have the ability to run this command.");
+	}
+}else{
+	send("You can voice, halfop, op, devoice, dehalfop and deop people using this command if DeadBot has the appropriate channel priviledges.");
+}

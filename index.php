@@ -99,13 +99,18 @@ while(1) {
 			$direct = substr(strtolower(str_replace(array(chr(10), chr(13)), '', $ex[3])), 1);
 			$command = strtolower(str_replace(array(chr(10), chr(13)), '', $ex[4]));
 			
+			// Attempt to detect excess flooding and hacking
+			$current = date('ymdHis');
+			
 			// If the command was found, execute the external command
-			if ($direct == strtolower($nick) || $direct == strtolower($nick).':' || $direct == $shortdirect) {
+			if ($direct == strtolower($nick) || $direct == strtolower($nick).':' || $direct == $shortdirect && (!(($current - $lastmsg) < 1 && $abuser == $userinfo[0]) && $recipient[1] != '!')) {
 				if (file_exists("cmd/{$command}")) {
 					eval(file_get_contents("cmd/{$command}"));
 				}else{
 					send("Sorry, the command requested is invalid. Please run '{$nick} help' to see a list of commands.");
 				}
+				$lastmsg = date('ymdHis');
+				$abuser = $userinfo[0];
 			}
 			
 			
