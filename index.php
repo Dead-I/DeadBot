@@ -86,6 +86,13 @@ while(1) {
 			// Get the command which was sent
 			$command = str_replace(array(chr(10), chr(13)), '', $ex[3]);
 			
+			// If DeadBot is kicked
+			if ($ex[1] == 'KICK' && $ex[3] == $nick) {
+				raw("JOIN {$ex[2]}");
+				sleep(1);
+				normal("If you need me to leave, please ask an admin to run the 'part' command on me.", $ex[2]);
+			}
+			
 		}
 		
 		
