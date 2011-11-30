@@ -106,6 +106,10 @@ while(1) {
 				}else{
 					send("Sorry, the command requested is invalid. Please run '{$nick} help' to see a list of commands.");
 				}
+				
+				if ($command == 'help') {
+					send($commands);
+				}
 			}
 			
 			

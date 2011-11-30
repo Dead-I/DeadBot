@@ -37,7 +37,7 @@ function find($delimiter, $string) {
 	if (isset($explode[1])) {
 		return 1;
 	}else{
-		return 2;
+		return 0;
 	}
 	
 }
