@@ -87,6 +87,7 @@ while(1) {
 			if($ex[0] == "PING") raw("PONG {$ex[1]}");
 			
 			// Detect if the message was directed toward someone
+			$userinfo = explode("!", $ex[0]);
 			$directionexplode = explode(' @ ', $data);
 			if (!isset($directionexplode[1])) {
 				$recipient = substr($userinfo[0], 1);
