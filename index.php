@@ -103,7 +103,7 @@ while(1) {
 				if (find($command, $commands) == 1) {
 					include 'cmd/{$command}';
 				}else{
-					send("Sorry, the command requested is invalid. Please run '{$nick} help' to see a list of commands.", $ex[2]);
+					send("Sorry, the command requested is invalid. Please run '{$nick} help' to see a list of commands.");
 				}
 			}
 			

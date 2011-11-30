@@ -1,0 +1,3 @@
+send("My name is {$nick}, and I am currently running DeadBot-Stable who is under development by Dead-i.");
+send("You can control me by starting commands with '".strtolower($nick)."'. For example, '".strtolower($nick)." about'.");
+send("Find out more, report issues, and view my source: https://github.com/Dead-i/DeadBot-Stable");
