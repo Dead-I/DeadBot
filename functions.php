@@ -17,7 +17,7 @@ function raw($command) {
 function send($command, $sendchannel) {
 	global $socket;
 	global $recipient;
-	fputs($socket, "PRIVMSG {$sendchannel} {$recipient} :{$command}\n");
+	fputs($socket, "PRIVMSG {$sendchannel} :{$recipient} :{$command}\n");
 	echo "::: Message Sent to {$recipient} in {$sendchannel} - ".trim($command)." ::: \n\n";
 }
 
