@@ -44,6 +44,8 @@ function find($delimiter, $string) {
 
 // Retrieve commands, admins and hostmasks
 function sync() {
+	global $admins;
+	global $hostmasks;
 	$admins = file_get_contents('admins.txt');
 	$hostmasks = file_get_contents('hostmasks.txt');
 }
