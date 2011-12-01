@@ -1,0 +1,12 @@
+if (find($userinfo[0], $admins) == 1) {
+	if ($value == $staffpass) {
+		$fp = fopen("admins.txt", "a");
+		fwrite($fp, "{$value},");
+		fclose($fp);
+		send("Your hostmask is now trusted - you can now use administrative functions.");
+	}else{
+		send("The password you provided is incorrect. Please ask a bot admin for the password.");
+	}
+}else{
+	send ("Your nick is not on the admin file.");
+}

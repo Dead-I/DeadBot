@@ -1,0 +1,9 @@
+if ($admin == 1) {
+	$fp = fopen("admins.txt", "a");
+	fwrite($fp, "{$value},");
+	fclose($fp);
+	send("The user '{$value}' has been added to the admin's list. The user must run the trust command before they can use admin functions.");
+	normal("{$value}: You have been granted administrative priviledges. Please ask a bot admin for the trust password and then run the trust command.");
+}else{
+	send("Sorry, only the bot admins have the ability to run this command.");
+}
