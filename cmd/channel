@@ -1,6 +1,6 @@
 if (isset($value)) {
 	if ($admin == 1) {
-		raw("CS {$ex[5]} {$ex[2]}");
+		raw("CS {$value} {$ex[2]} {$ex[6]}");
 	}else{
 		send("Sorry, only the bot admins have the ability to run this command.");
 	}

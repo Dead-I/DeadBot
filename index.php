@@ -95,6 +95,9 @@ while(1) {
 				$recipient = trim($directionexplode[1]);
 			}
 			
+			// Detect if the user is an admin
+			if (find($userinfo[0], $admins) == 1) $admin = 1;
+			
 			// Get the direct and command which was sent
 			$direct = substr(strtolower(str_replace(array(chr(10), chr(13)), '', $ex[3])), 1);
 			$command = strtolower(str_replace(array(chr(10), chr(13)), '', $ex[4]));
