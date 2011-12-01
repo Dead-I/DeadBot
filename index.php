@@ -98,6 +98,7 @@ while(1) {
 			// Get the direct and command which was sent
 			$direct = substr(strtolower(str_replace(array(chr(10), chr(13)), '', $ex[3])), 1);
 			$command = strtolower(str_replace(array(chr(10), chr(13)), '', $ex[4]));
+			$value = strtolower(str_replace(array(chr(10), chr(13)), '', $ex[5]));
 			
 			// Attempt to detect excess flooding and hacking
 			$current = date('ymdHis');

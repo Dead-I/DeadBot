@@ -1,4 +1,4 @@
-if (isset(strtolower($ex[5]))) {
+if (isset($value)) {
 	if ($admin == 1) {
 		raw("CS {$ex[5]} {$ex[2]}");
 	}else{
