@@ -105,6 +105,9 @@ while(1) {
 			$command = strtolower(str_replace(array(chr(10), chr(13)), '', $ex[4]));
 			$value = strtolower(str_replace(array(chr(10), chr(13)), '', $ex[5]));
 			
+			// Detect if the message is privately messaged
+			if (strtolower($ex[2]) == 'deadbot') $ex[2] = $recipient;
+			
 			// Attempt to detect excess flooding and hacking
 			$current = date('ymdHis');
 			
