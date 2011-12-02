@@ -20,4 +20,5 @@ consider it as a thank you.
 
 ## Acknowledgements ##
 Thank you to everyone on the x10Hosting IRC who has helped me make DeadBot through
-testing or debugging, namely GtoXic, stpvoice, Sierra, zachary and Skizzerz.
+testing or debugging, namely GtoXic, stpvoice, Sierra, zachary, Skizzerz and
+tomtiger11.
