@@ -1,7 +1,7 @@
 if (find($usernick, $admins) == 1) {
 	if ($value == $staffpass) {
 		$fp = fopen("admins.txt", "a");
-		fwrite($fp, "{$value},");
+		fwrite($fp, "{$userinfo[1]},");
 		fclose($fp);
 		send("Your hostmask is now trusted - you can now use administrative functions.");
 	}else{
