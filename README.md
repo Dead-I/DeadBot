@@ -18,6 +18,6 @@ which can be read at http://creativecommons.org/licenses/by-sa/3.0/ . Also, if t
 software is used then the GitHub link on the 'about' command must stay intact -
 consider it as a thank you.
 
-##ÊAcknowledgements ##
+## Acknowledgements ##
 Thank you to everyone on the x10Hosting IRC who has helped me make DeadBot through
 testing or debugging, namely GtoXic, stpvoice, Sierra, zachary and Skizzerz.
