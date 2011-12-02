@@ -1,8 +1,8 @@
 <?php
 
 #########################
-##ÊDeadBot v1.0 Stable ##
-###ÊAn IRC Bot in PHP ###
+## DeadBot v1.0 Stable ##
+### An IRC Bot in PHP ###
 #### Read README.md ####
 #########################
 
@@ -104,6 +104,7 @@ while(1) {
 			$direct = substr(strtolower(str_replace(array(chr(10), chr(13)), '', $ex[3])), 1);
 			$command = strtolower(str_replace(array(chr(10), chr(13)), '', $ex[4]));
 			$value = strtolower(str_replace(array(chr(10), chr(13)), '', $ex[5]));
+			$value = preg_replace('./', '', $value);
 			
 			// Detect if the message is privately messaged
 			if (strtolower($ex[2]) == 'deadbot') $ex[2] = $recipient;
