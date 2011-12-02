@@ -103,7 +103,7 @@ while(1) {
 			// Get the direct and command which was sent
 			$direct = substr(strtolower(str_replace(array(chr(10), chr(13)), '', $ex[3])), 1);
 			$command = strtolower(str_replace(array(chr(10), chr(13)), '', $ex[4]));
-			$command = preg_replace('./', '', $command);
+			$command = str_replace(array("/", "."), '', $command);
 			$value = strtolower(str_replace(array(chr(10), chr(13)), '', $ex[5]));
 			
 			// Detect if the message is privately messaged
