@@ -33,8 +33,9 @@
 	if($input == "y"){
 		writeout("Yes");
 	}else{
-		writeout("No");
+		goto end;
 	}
 	end: //DO NOT TOUCH THIS LABEL PLEASE!
 		resetcolour();
+		exit;
 ?>
