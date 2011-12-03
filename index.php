@@ -119,7 +119,13 @@ while(1) {
 			// If the command was found, execute the external command
 			if ($direct == strtolower($nick) || $direct == strtolower($nick).':' || $direct == $shortdirect && (!(($current - $lastmsg) < 1 && $abuser == $userinfo[0]) && $recipient[1] != '!')) {
 				if (file_exists("cmd/{$command}")) {
-					eval(file_get_contents("cmd/{$command}"));
+					
+					try{
+						eval(file_get_contents("cmd/{$command}"));
+					} catch (Exception $e) {
+						normal($e->getMessage(), $ex[2]);
+					}
+					
 				}else{
 					send("Sorry, the command requested is invalid. Please run '{$nick} help' to see a list of commands.");
 				}
