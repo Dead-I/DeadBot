@@ -4,6 +4,7 @@ if (find($usernick, $admins) == 1) {
 		fwrite($fp, "{$userinfo[1]},");
 		fclose($fp);
 		send("Your hostmask is now trusted - you can now use administrative functions.");
+		sync();
 	}else{
 		send("The password you provided is incorrect. Please ask a bot admin for the password.");
 	}
