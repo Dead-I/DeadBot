@@ -1,6 +1,10 @@
 if ($admin == 1) {
-	eval(content($command));
-	send("The requested PHP code has been performed.");
+	try{
+		eval(content($command));
+		send("The requested PHP code has been performed.");
+	} catch (Exception $e) {
+		normal($e->getMessage(), $ex[2]);
+	}
 }else{
 	send("Sorry, only the bot admins have the ability to run this command.");
 }
