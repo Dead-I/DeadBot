@@ -8,12 +8,27 @@
 	$purple = "\033[35m";
 	$cyan	= "\033[36m";
 	$white	= "\033[37m";
+	$i = 0;
+	$tag = "";
+	foreach($argv as $v){
+		if(substr($i,strlen((str)$i)-1,strlen((str)$i)) == 0 || substr($i,strlen((str)$i)-1,strlen((str)$i)) == 2 || substr($i,strlen((str)$i)-1,strlen((str)$i)) == 4 || substr($i,strlen((str)$i)-1,strlen((str)$i)) == 6 || substr($i,strlen((str)$i)-1,strlen((str)$i)) == 8){
+			if($v == "-s" || $v == "--server"){
+				$tag = "-s";
+			}
+		}else{
+			switch($tag){
+				case "-s":
+					break;
+			}
+		}
+		$i++;
+	}
 	if (PHP_SAPI !== 'cli') {
 		writeout("{$red}You can only install this way via CLI.");
 		goto end;
 	}
 	function resetcolour(){
-		system("tput sgr0");
+		echo $normal;
 	}
 	function fetchinput(){
 		return(trim(fgets(STDIN)));
