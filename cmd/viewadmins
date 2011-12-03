@@ -1,0 +1,2 @@
+send("Here are the current administrators of {$nick} who can run special commands.");
+send(str_replace(',', ', ', $admins));
