@@ -34,8 +34,7 @@ set_time_limit(0);
 sync();
 
 // Connect to the IRC server
-//$socket = fsockopen($server, $port);
-$socket = fsockopen("irc.x10hosting.com", 6667);
+$socket = fsockopen($server, $port);
 
 // Default configuration variables
 if (!isset($installed)) {
