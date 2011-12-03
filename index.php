@@ -55,7 +55,12 @@ foreach($channel as $join) {
 	normal("DeadBot {$version} Loaded", $join);
 }
 
-// Echo the success message to confirm DeadBot"s operation
+// Join the staff channel
+raw("JOIN {$staffchannel}");
+sleep(2);
+normal("Diagnostics Activated for DeadBot {$version}", $staffchannel);
+
+// Echo the success message to confirm DeadBot's operation
 echo "###############################\n";
 echo "##### DeadBot PHP IRC Bot #####\n";
 echo "## Version {$version} Loaded ##\n";
