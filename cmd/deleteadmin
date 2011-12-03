@@ -1,5 +1,5 @@
 if ($admin == 1) {
-	$newadmins = str_replace($value',', $admins);
+	$newadmins = str_replace($value.',', $admins);
 	$fp = fopen("admins.txt", "w");
 	fwrite($fp, $newadmins);
 	fclose($fp);
