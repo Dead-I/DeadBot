@@ -7,7 +7,7 @@
 #########################
 
 // Welcome to the main DeadBot file
-// You don"t really need to change anything in here without good reason
+// You don't really need to change anything in here without good reason
 // To change commands, look in the cmd directory or use the addcmd command.
 // To change configuration, edit config.php.
 // Thank you for using DeadBot!
