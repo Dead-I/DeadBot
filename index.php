@@ -124,7 +124,7 @@ while(1) {
 			$current = date('ymdHis');
 			
 			// If the command was found, execute the external command
-			if ($direct == strtolower($nick) || $direct == strtolower($nick).':' || $direct == $shortdirect && (!(($current - $lastmsg) < 1 && $abuser == $userinfo[0]) && $recipient[1] != '!')) {
+			if ($direct == strtolower($nick) || $direct == strtolower($nick).':' || $direct == $shortdirect && (!(($current - $lastmsg) < 1 && $abuser == $userinfo[0]) && $recipient[0] != '!')) {
 				if (file_exists("cmd/{$command}")) {
 					
 					try{
