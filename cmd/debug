@@ -1,5 +1,5 @@
 if ($admin == 1) {
-	if ($argv[1] == 'debug')
+	if ($argv[1] == 'debug') {
 		raw("QUIT :Attempting to switch from debug mode as requested by an admin");
 		sleep(2);
 		shell_exec("screen php {$physical}/index.php");
