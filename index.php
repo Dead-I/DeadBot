@@ -98,7 +98,11 @@ while(1) {
 			$usernick = strtolower(substr($userinfo[0], 1));
 			
 			// Detect if the user is an admin
-			if (find(','.$usernick.',', $admins) == 1 && find($userinfo[1], $hostmasks) == 1) $admin = 1;
+			if (find(','.$usernick.',', $admins) == 1 && find($userinfo[1], $hostmasks) == 1) {
+				$admin = 1;
+			}elseif (isset($admin)) {
+				unset($admin);
+			}
 			
 			// Get the direct and command which was sent
 			$direct = substr(strtolower(str_replace(array(chr(10), chr(13)), '', $ex[3])), 1);
