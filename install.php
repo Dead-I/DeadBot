@@ -14,6 +14,7 @@
 	}
 	function resetcolour(){
 		system("tput sgr0");
+	}
 	function fetchinput(){
 		return(trim(fgets(STDIN)));
 	}
@@ -36,6 +37,6 @@
 		goto end;
 	}
 	end: //DO NOT TOUCH THIS LABEL PLEASE!
-		resetcolour();
-		exit;
+	resetcolour();
+	exit;
 ?>
