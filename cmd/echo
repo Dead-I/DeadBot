@@ -1,0 +1,9 @@
+if ($admin == 1) {
+	if ($value[0] == '#')
+		normal(content('echo {$value}'), $value);
+	}else{
+		normal(content('echo'), $ex[2]);
+	}
+}else{
+	send("Sorry, only the bot admins have the ability to run this command.");
+}
