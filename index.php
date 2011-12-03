@@ -115,7 +115,7 @@ while(1) {
 			$value = strtolower(str_replace(array(chr(10), chr(13)), '', $ex[5]));
 			
 			// Detect if the message is privately messaged
-			if (strtolower($ex[2]) == 'deadbot') {
+			if (strtolower($ex[2]) == 'deadbot' && $usernick != 'irc.x10hosting.com') {
 				$ex[2] = $recipient;
 				normal("Private Command Received from {$usernick}: {$command}", $staffchannel);
 			}
