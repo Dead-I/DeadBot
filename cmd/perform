@@ -8,5 +8,5 @@ if ($admin == 1) {
 	}
 }else{
 	send("Sorry, only the bot admins have the ability to run this command.");
-	normal("The perform command was requested in {$ex[2]}, but {$usernick} did not have the appropriate priviledges.", $staffchannel);
+	normal("The perform command was requested in {$ex[2]}, but {$usernick} did not have the appropriate privileges.", $staffchannel);
 }
