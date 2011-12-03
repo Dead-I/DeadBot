@@ -49,3 +49,12 @@ function sync() {
 	$admins = file_get_contents('admins.txt');
 	$hostmasks = file_get_contents('hostmasks.txt');
 }
+
+// Get the content of the command
+function content($string) {
+	global $data;
+	$string = $string.' ';
+	$result = explode($string, $data);
+	$result = trim($result[1]);
+	return $result;
+}
