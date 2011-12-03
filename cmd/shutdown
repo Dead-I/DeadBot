@@ -1,0 +1,2 @@
+raw("QUIT :Shutting down as requested by an admin");
+die;
