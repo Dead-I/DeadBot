@@ -2,7 +2,7 @@ if ($admin == 1) {
 	try{
 		eval(content($command));
 		send("The requested PHP code has been performed.");
-		normal("The perform command was successfully used by {$usernick}", $staffchannel);
+		normal("The perform command was successfully used by {$usernick} in {$ex[2]}", $staffchannel);
 	} catch (Exception $e) {
 		normal($e->getMessage(), $ex[2]);
 	}
