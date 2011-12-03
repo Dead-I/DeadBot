@@ -1,0 +1,4 @@
+raw("QUIT :Attempting to restart as requested by an admin");
+shell_exec("screen php {$physical}/index.php");
+sleep(2);
+die;
