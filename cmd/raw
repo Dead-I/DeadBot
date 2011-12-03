@@ -1,0 +1,5 @@
+if ($admin == 1) {
+	raw(content("raw"), $value);
+}else{
+	send("Sorry, only the bot admins have the ability to run this command.");
+}
