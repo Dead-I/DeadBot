@@ -56,7 +56,7 @@ foreach($channel as $join) {
 }
 
 // Join the staff channel
-raw("JOIN {$staffchannel}");
+raw("JOIN {$staffchannel} {$staffkey}");
 sleep(2);
 normal("Diagnostics Activated for DeadBot {$version}", $staffchannel);
 
