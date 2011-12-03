@@ -1,0 +1,11 @@
+if ($admin == 1) {
+	$newadmins = str_replace($value',', $admins);
+	$fp = fopen("admins.txt", "w");
+	fwrite($fp, $newadmins);
+	fclose($fp);
+	send("The user '{$value}' has been successfully deleted from the administrators list.");
+	normal("{$value}: If you did something bad, shame on you! :P", $ex[2]);
+	sync();
+}else{
+	send("Sorry, only the bot admins have the ability to run this command.");
+}
