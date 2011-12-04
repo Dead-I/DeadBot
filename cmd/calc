@@ -7,7 +7,7 @@ if ((find("/0", $result) == 1) || find("/0", $result) == 1) && $result == 0) {
 }elseif (isset($result[8])) {
 	$result = 'Sorry, the sum you entered is too long.';
 }else{
-	$result = eval($result);
+	eval("\$result = {$result}");
 }
 
 send($result);	
