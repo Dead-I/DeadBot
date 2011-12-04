@@ -5,7 +5,7 @@ if ($ex[5] == 'squareroot') {
 	$result = intval($result);
 	$result = sqrt($result);
 	send($result);
-}elseif ($ex[5] == 'pi' || $ex[5] == 'pi()') {
+}elseif ($ex[5] == 'pi') {
 	send(pi());
 }else{
 	$letters = array("a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z");
