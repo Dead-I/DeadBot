@@ -1,16 +1,10 @@
 if ($admin == 1) {
-	if ($argv[1] == 'debug') {
-		raw("QUIT :Attempting to switch from debug mode as requested by an admin");
-		sleep(2);
-		shell_exec("screen php {$physical}/index.php");
-		sleep(2);
-		die;
+	if ($argv[1] == "debug") {
+		send("Debug mode has been disabled.");
+		unset($argv[1]);
 	}else{
-		raw("QUIT :Attempting to switch to debug mode as requested by an admin");
-		sleep(2);
-		shell_exec("screen php {$physical}/index.php debug");
-		sleep(2);
-		die;
+		send("Debug mode has been enabled.");
+		$argv[1] = "debug";
 	}
 }else{
 	send("Sorry, only the bot admins have the ability to run this command.");
