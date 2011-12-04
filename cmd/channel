@@ -1,7 +1,7 @@
 if (isset($value)) {
 	if ($admin == 1) {
 		raw("CS {$value} {$ex[2]} {$ex[6]}");
-		if ($ex[2] != $staffchannel) normal("The user '{$ex[6]}' was {$value}ed by {$usernick} in {$ex[2]}.", $staffchannel);
+		if ($ex[2] != $staffchannel) normal("The user {$ex[6]} was {$value}ed by {$usernick} in {$ex[2]}.", $staffchannel);
 	}else{
 		send("Sorry, only the bot admins have the ability to run this command.");
 		if ($ex[2] != $staffchannel) normal("The channel command was requested in {$ex[2]}, but {$usernick} did not have the appropriate privileges.", $staffchannel);
