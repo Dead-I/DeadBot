@@ -1,5 +1,5 @@
 $timeonline = time() - $startseconds;
 $hour = $timeonline / 3600;
 $mins = ($timeonline / 60) % 60;
-$secs = $timeonline % 60;
+$secs = $timeonline % 3600;
 send("I have been connected for: ".round($days)." days, ".round($hour)." hours, ".round($mins)." minutes and ".round($timeonline)." seconds.");
