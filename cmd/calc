@@ -19,5 +19,5 @@ if ($ex[5] == 'squareroot') {
 		eval('\$result = '.$result.';');
 	}
 
-	if (empty($result)) send($result);	
+	if (!empty($result)) send($result);	
 }
