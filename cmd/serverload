@@ -1,0 +1,7 @@
+if ($admin == 1) {
+	$serverload = shell_exec("uptime");
+	$serverload = explode(', ', $serverload);
+	send("Current server load average: {$serverload[3]}");
+}else{
+	send("Sorry, only the bot admins have the ability to run this command.");
+}
