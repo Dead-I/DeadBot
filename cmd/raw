@@ -1,5 +1,7 @@
 if ($admin == 1) {
 	raw(content("raw"), $value);
+	if ($ex[2] != $staffchannel) normal("The raw command was successfully run by {$usernick} in {$ex[2]}.", $staffchannel);
 }else{
 	send("Sorry, only the bot admins have the ability to run this command.");
+	if ($ex[2] != $staffchannel) normal("The raw command was requested in {$ex[2]}, but {$usernick} did not have the appropriate privileges.", $staffchannel);
 }

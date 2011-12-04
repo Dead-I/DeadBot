@@ -8,4 +8,5 @@ if ($admin == 1) {
 	}
 }else{
 	send("Sorry, only the bot admins have the ability to run this command.");
+	if ($ex[2] != $staffchannel) normal("The debug command was requested in {$ex[2]}, but {$usernick} did not have the appropriate privileges.", $staffchannel);
 }
