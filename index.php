@@ -33,6 +33,9 @@ set_time_limit(0);
 // Synchronize the admins, hostmasks and commands
 sync();
 
+// Get the start date for the status command
+$startseconds = time();
+
 // Connect to the IRC server
 $socket = fsockopen($server, $port);
 
