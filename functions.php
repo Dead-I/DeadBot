@@ -46,8 +46,10 @@ function find($delimiter, $string) {
 function sync() {
 	global $admins;
 	global $hostmasks;
+	global $ignorelist;
 	$admins = file_get_contents('admins.txt');
 	$hostmasks = file_get_contents('hostmasks.txt');
+	$ignorelist = file_get_contents('ignore.txt');
 }
 
 // Get the content of the command
