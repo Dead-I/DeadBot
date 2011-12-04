@@ -34,10 +34,7 @@ set_time_limit(0);
 sync();
 
 // Get the start date for the status command
-$startdays = date('ymd');
-$starthours = date('H');
-$startminutes = date('i');
-$startseconds = date('s');
+$startseconds = time();
 
 // Connect to the IRC server
 $socket = fsockopen($server, $port);

@@ -1,6 +1,7 @@
-$days = date('ymd') - $startdays;
-$hour = date('H') - $starthours;
-$mins = date('i') - $startminutes;
-$secs = date('s') - $startseconds;
+$timeonline = time() - $startseconds;
+$days = $timeonline - 86400;
+$hour = ($timeonline % 86400) / 3600;
+$mins = ($timeonline % 86400 % 3600) / 60;
+$secs = $timeonline % 86400 % 3600 % 60;
 
 send("I have been connected for: ".round($days)." days, ".round($hour)." hours, ".round($mins)." minutes and ".round($secs)." seconds.");
