@@ -1,5 +1,5 @@
 if ($admin == 1) {
-	if ($value[0] == "#")
+	if ($value[0] == "#") {
 		$dirname = str_replace("#", "", $value);
 		if (!file_exists($dirname)) mkdir($dirname);
 		$fp = fopen("{$dirname}/{$ex[6]}", "w");
