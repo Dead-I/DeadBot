@@ -9,7 +9,7 @@ if ($admin == 1) {
 		normal("A new channel-specific command was added by {$usernick} in {$ex[2]} for {$ex[6]}: {$value}", $staffchannel);
 	}else{
 		$fp = fopen("cmd/{$value}", "w");
-		fwrite($fp, content("addcmd {$value}");
+		fwrite($fp, content("addcmd {$value}));
 		fclose($fp);
 		send("The new global command has been added ({$value}).");
 		normal("A new global command was added by {$usernick} in {$ex[2]}: {$value}", $staffchannel);
