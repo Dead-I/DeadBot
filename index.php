@@ -125,7 +125,17 @@ while(1) {
 			
 			// If the command was found, execute the external command
 			if (($direct == strtolower($nick) || $direct == strtolower($nick).':' || $direct == $shortdirect) && (find(",{$recipient}", $ignorelist) != 1) && (!(($current - $lastmsg) < 1 && $abuser == $userinfo[0]) && $recipient[0] != '!')) {
-				if (file_exists("cmd/{$command}")) {
+				$dirname = str_replace("#", "", $ex[2]);
+				
+				if (file_exists("{$dirname}/{$command}")) {
+				
+					try{
+						eval(file_get_contents("{$dirname}/{$command}"));
+					} catch (Exception $e) {
+						normal($e->getMessage(), $ex[2]);
+					}
+					
+				}elseif (file_exists("cmd/{$command}")) {
 					
 					try{
 						eval(file_get_contents("cmd/{$command}"));

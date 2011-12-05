@@ -1,0 +1,20 @@
+if ($admin == 1) {
+	if ($value[0] == "#")
+		$dirname = str_replace("#", "", $value);
+		if (!file_exists($dirname)) mkdir($dirname);
+		$fp = fopen("{$dirname}/{$ex[6]}", "w");
+		fwrite($fp, content("{$value} {$ex[6]}");
+		fclose($fp);
+		send("The new channel-specific command has been added ({$ex[6]}) to {$value}.");
+		normal("A new channel-specific command was added by {$usernick} in {$ex[2]} for {$ex[6]}: {$value}", $staffchannel);
+	}else{
+		$fp = fopen("cmd/{$value}", "w");
+		fwrite($fp, content("addcmd {$value}");
+		fclose($fp);
+		send("The new global command has been added ({$value}).");
+		normal("A new global command was added by {$usernick} in {$ex[2]}: {$value}", $staffchannel);
+	}
+}else{
+	send("Sorry, only the bot admins have the ability to run this command.");
+	normal("The addcmd command was requested in {$ex[2]}, but {$usernick} did not have the appropriate privileges.", $staffchannel);
+}
