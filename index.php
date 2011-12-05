@@ -33,6 +33,9 @@ set_time_limit(0);
 // Synchronize the admins, hostmasks and commands
 sync();
 
+// Get the start date for the status command
+$startseconds = time();
+
 // Connect to the IRC server
 $socket = fsockopen($server, $port);
 
@@ -55,7 +58,12 @@ foreach($channel as $join) {
 	normal("DeadBot {$version} Loaded", $join);
 }
 
-// Echo the success message to confirm DeadBot"s operation
+// Join the staff channel
+raw("JOIN {$staffchannel} {$staffkey}");
+sleep(2);
+normal("Diagnostics Activated for DeadBot {$version}", $staffchannel);
+
+// Echo the success message to confirm DeadBot's operation
 echo "###############################\n";
 echo "##### DeadBot PHP IRC Bot #####\n";
 echo "## Version {$version} Loaded ##\n";
@@ -116,7 +124,7 @@ while(1) {
 			$current = date('ymdHis');
 			
 			// If the command was found, execute the external command
-			if ($direct == strtolower($nick) || $direct == strtolower($nick).':' || $direct == $shortdirect && (!(($current - $lastmsg) < 1 && $abuser == $userinfo[0]) && $recipient[1] != '!')) {
+			if (($direct == strtolower($nick) || $direct == strtolower($nick).':' || $direct == $shortdirect) && (find(",{$recipient}", $ignorelist) != 1) && (!(($current - $lastmsg) < 1 && $abuser == $userinfo[0]) && $recipient[0] != '!')) {
 				if (file_exists("cmd/{$command}")) {
 					
 					try{
@@ -124,6 +132,8 @@ while(1) {
 					} catch (Exception $e) {
 						normal($e->getMessage(), $ex[2]);
 					}
+					
+					if (strtolower($ex[2]) == 'deadbot') normal("Private Command Received from {$usernick}: {$command}", $staffchannel);
 					
 				}else{
 					send("Sorry, the command requested is invalid. Please run '{$nick} help' to see a list of commands.");
