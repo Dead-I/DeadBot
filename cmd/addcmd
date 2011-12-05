@@ -3,7 +3,7 @@ if ($admin == 1) {
 		$dirname = str_replace("#", "", $value);
 		if (!file_exists($dirname)) mkdir($dirname);
 		$fp = fopen("{$dirname}/{$ex[6]}", "w");
-		fwrite($fp, content("{$value} {$ex[6]}");
+		fwrite($fp, content("{$value} {$ex[6]}"));
 		fclose($fp);
 		send("The new channel-specific command has been added ({$ex[6]}) to {$value}.");
 		normal("A new channel-specific command was added by {$usernick} in {$ex[2]} for {$ex[6]}: {$value}", $staffchannel);
