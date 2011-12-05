@@ -10,19 +10,6 @@
 	$white	= "\033[37m";
 	$i = 0;
 	$tag = "";
-	foreach($argv as $v){
-		if(substr($i,strlen((str)$i)-1,strlen((str)$i)) == 0 || substr($i,strlen((str)$i)-1,strlen((str)$i)) == 2 || substr($i,strlen((str)$i)-1,strlen((str)$i)) == 4 || substr($i,strlen((str)$i)-1,strlen((str)$i)) == 6 || substr($i,strlen((str)$i)-1,strlen((str)$i)) == 8){
-			if($v == "-s" || $v == "--server"){
-				$tag = "-s";
-			}
-		}else{
-			switch($tag){
-				case "-s":
-					break;
-			}
-		}
-		$i++;
-	}
 	if (PHP_SAPI !== 'cli') {
 		writeout("{$red}You can only install this way via CLI.");
 		goto end;
@@ -100,8 +87,18 @@
 			writeout("No channels specified.");
 			goto channels;
 		}elseif(substr($channels,0,1) != "#"){
-			writeout("Incorrect channel specified.");
+			writeout("Incorrect channel(s) specified.");
 			goto channels;
+		}
+		staffchan:
+		question("What do you want the staff channel to be (Where all debugging information will be. One channel only) [{$red}REQUIRED{$normal}]");
+		$staffchannel = fetchinput();
+		if($staffchannel == ""){
+			writeout("No channel specified.");
+			goto staffchan;
+		}elseif(substr($channels,0,1) != "#"){
+			writeout("Incorrect channel specified.");
+			goto staffchan;
 		}
 		physical:
 		question("Where is the bot located? [{$red}REQUIRED{$normal}]");
@@ -122,8 +119,9 @@
 		goto end;
 	}
 	configend:
+	writeout("Configuration finished!");
 	$fp = fopen("./config.php","w");
-	$write = "<?php\r\n\$installed = 1;\r\n\$server = '$server';\r\n\$port = $port;\r\n\$nick = '$nick';\r\n\$name = '$name';\r\n\$pass = '$pass';\r\n\$staffpass = '$staffpass';\r\n\$channels = '$channels';\r\n\$physical = '$physical';\r\n\$shortdirect = '$shortdirect';\r\n?>";
+	$write = "<?php\r\n\$installed = 1;\r\n\$server = '$server';\r\n\$port = $port;\r\n\$nick = '$nick';\r\n\$name = '$name';\r\n\$pass = '$pass';\r\n\$staffpass = '$staffpass';\r\n\$channels = '$channels';\r\n$staffchannel = '$staffchannel';\r\n\$physical = '$physical';\r\n\$shortdirect = '$shortdirect';\r\n?>";
 	fwrite($fp,$write);
 	fclose($fp);
 	writeout("{$green}CONGRATULATIONS! Installation was successful!{$normal}");
