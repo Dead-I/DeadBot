@@ -14,9 +14,11 @@ until the Stable version is complete. Thank you.
 
 ## License ##
 This software is licensed under the CreativeCommons Attribution-ShareAlike license,
-which can be read at http://creativecommons.org/licenses/by-sa/3.0/ . Also, if the
-software is used then the GitHub link on the 'about' command must stay intact -
-consider it as a thank you.
+which can be read at http://creativecommons.org/licenses/by-sa/3.0/ . This software
+comes with no warranty, and no developers or any other person in relation to the
+software will be held responsible for any loss of data. Also, if the software is
+used then the GitHub link on the 'about' command must stay intact - consider it as a
+thank you.
 
 ## Acknowledgements ##
 Thank you to everyone on the x10Hosting IRC who has helped me make DeadBot through
