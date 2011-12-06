@@ -153,7 +153,7 @@ while(1) {
 		}
 		
 		// Pausing to prevent excessive server load
-		sleep(0.2);
+		sleep(0.4);
 		
 	}
 }
