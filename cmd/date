@@ -2,7 +2,10 @@ if (empty($value)) {
 	date_default_timezone_set($defaultdate);
 }else{
 	date_default_timezone_set($value);
-	if (date_default_timezone_get() != $value) send("The time zone/location you entered was incorrect. Please enter a valid one at: http://www.php.net/manual/en/timezones.php");
+	if (date_default_timezone_get() != $value) {
+		send("The time zone/location you entered was incorrect. Please enter a valid one at: http://www.php.net/manual/en/timezones.php");
+		date_default_timezone_set($defaultdate);
+	}
 }
 
 send("It is currently ".date('l jS F h:i:s a')." in ".date_default_timezone_get().".");
