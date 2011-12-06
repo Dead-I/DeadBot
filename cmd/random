@@ -1,0 +1,10 @@
+$ex[6] = trim($ex[6]);
+if (isset($value[6]) && isset($ex[6])) {
+	send("A number you entered is too long - please shorten it and try again.");
+}else{
+	if (is_numeric($value) && is_numeric($ex[6])) {
+		send("Randomly chosen number between {$value} and {$ex[6]}: ".rand($value, $ex[6]));
+	}else{
+		send("Randomly chosen number between 1 and 1000: ".rand(0, 1000));
+	}
+}
