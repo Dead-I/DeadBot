@@ -18,16 +18,6 @@ $version = '1.0 STABLE';
 // Error reporting settings
 error_reporting(E_ALL ^ E_NOTICE);
 
-// Detect uninstalled version
-if (!isset($installed) && $argv[1] != 'installed') {
-	echo "\n";
-	echo "Welcome to DeadBot {$version}!\n\n";
-	echo "It appears that you have not setup the bot yet, so please follow our easy installation wizard which will guide you through the process of getting DeadBot working and customized to your needs.\n\n";
-	echo "To begin the installation, please run this in your command line terminal while inside the bot directory: php install.php\n\n";
-	echo "Thank you for using DeadBot!\n\n";
-	die;
-}
-
 // Output an initializing text - helpful for debugging
 echo "\nInitializing";
 
@@ -39,6 +29,15 @@ require "functions.php";
 
 // Output text that confirms the config/functions worked
 echo "...\n\n";
+
+// Detect uninstalled version
+if (!isset($installed) && $argv[1] != 'installed') {
+	echo "Welcome to DeadBot {$version}!\n\n";
+	echo "It appears that you have not setup the bot yet, so please follow our easy installation wizard which will guide you through the process of getting DeadBot working and customized to your needs.\n\n";
+	echo "To begin the installation, please run this in your command line terminal while inside the bot directory: php install.php\n\n";
+	echo "Thank you for using DeadBot!\n\n";
+	die;
+}
 
 // Ensure that the bot stays alive
 set_time_limit(0);
