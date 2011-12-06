@@ -12,7 +12,7 @@
 	$tag = "";
 	if (PHP_SAPI !== 'cli') {
 		writeout("{$red}You can only install this way via CLI.");
-		goto end;
+		die();
 	}
 	function resetcolour(){
 		echo $normal;
@@ -119,7 +119,6 @@
 		goto end;
 	}
 	configend:
-	writeout("Configuration finished!");
 	$fp = fopen("./config.php","w");
 	$write = "<?php\r\n\$installed = 1;\r\n\$server = '$server';\r\n\$port = $port;\r\n\$nick = '$nick';\r\n\$name = '$name';\r\n\$pass = '$pass';\r\n\$staffpass = '$staffpass';\r\n\$channels = '$channels';\r\n$staffchannel = '$staffchannel';\r\n\$physical = '$physical';\r\n\$shortdirect = '$shortdirect';\r\n?>";
 	fwrite($fp,$write);
