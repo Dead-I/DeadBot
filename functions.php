@@ -50,6 +50,7 @@ function sync() {
 	$admins = file_get_contents('admins.txt');
 	$hostmasks = file_get_contents('hostmasks.txt');
 	$ignorelist = file_get_contents('ignore.txt');
+	require 'config.php';
 }
 
 // Get the content of the command
