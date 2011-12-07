@@ -1,7 +1,7 @@
 if ($admin == 1) {
 	sync();
 	$newignore = str_replace("{$value},", "", $ignorelist);
-	$fp = fopen("admins.txt", "a");
+	$fp = fopen("ignore.txt", "a");
 	fwrite($fp, $newignore);
 	fclose($fp);
 	sync();
