@@ -67,5 +67,5 @@ switch ($languageid) {
 
 if ($admin == 1) $welcomeadmin = "You are an administrator of {$nick}";
 
-send("{$welcome} {$usernick}, and welcome to {$ex[2]}! Right now it is ".date('h:i:s a')." in ".date_default_timezone_get().".");
+send("{$welcome} {$usernick}, and welcome to {$ex[2]}! Right now it is ".date('g:ia')." in ".date_default_timezone_get().".");
 send("And guess what? You just learned how to say hello in {$lang}! To control me, type 'deadbot help'.");
