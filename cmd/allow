@@ -1,0 +1,14 @@
+if ($admin == 1) {
+	sync();
+	$newignore = str_replace("{$value},", "", $ignorelist);
+	$fp = fopen("admins.txt", "a");
+	fwrite($fp, $newignore);
+	fclose($fp);
+	sync();
+	send("{$value} has been removed from the ignore list.");
+	normal("{$value}: So, we meet again...", $ex[2]);
+	if ($ex[2] != $staffchannel) normal("The allow command was successfully used by {$usernick} in {$ex[2]} for {$value}.", $staffchannel);
+}else{
+	send("Sorry, only the bot admins have the ability to run this command.");
+	if ($ex[2] != $staffchannel) normal("The allow command was requested in {$ex[2]} for {$value}, but {$usernick} did not have the appropriate privileges.", $staffchannel);
+}
