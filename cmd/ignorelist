@@ -1,0 +1,3 @@
+$newignorelist = str_replace(',', ', ', $admins);
+send("Here are the users who will be ignored by me.");
+send(substr($newignorelist, 2));
