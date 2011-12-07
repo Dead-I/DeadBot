@@ -1,6 +1,6 @@
 if ($admin == 1) {
 	send("The following commands can be run by all {$nick} administrators:");
-	send("adminhelp, addadmin, deleteadmin, viewadmins, channel, perform, tempjoin, part, echo, raw, debug, restart, shutdown");
+	send("adminhelp, addadmin, deleteadmin, viewadmins, channel, perform, ignorelist, ignore, allow, tempjoin, part, echo, raw, debug, restart, shutdown");
 	send("These commands can be run in a public channel or private message.");
 }else{
 	send("Sorry, only the bot admins have the ability to run this command.");
