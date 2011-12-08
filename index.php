@@ -129,7 +129,7 @@ while(1) {
 		if (strtolower($ex[2]) == 'deadbot') $ex[2] = $recipient;
 		
 		// Logging
-		if (find(",{$ex[2]},", $logchannels) == 1 && $ex[1] == "PRIVMSG") {
+		if (find("{$ex[2]},", $logchannels) == 1 && $ex[1] == "PRIVMSG") {
 			$result = mysql_query("SELECT FROM {$loggingtable} ORDER BY id DESC");
 			$result = mysql_fetch_array($result);
 			
