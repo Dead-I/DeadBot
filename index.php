@@ -142,8 +142,8 @@ while(1) {
 				$newid = 1;
 			}
 			
-			mysql_query("INSERT INTO {$loggingtable} VALUES ({$newid}, ".content("{$ex[2]} :").", {$usernick}, {$ex[2]}, {$datestring});");
-			mysql_query("DELETE FROM {$loggingtable} WHERE timestamp >= {$newdatestring};");
+			mysql_query("INSERT INTO {$loggingtable} VALUES ({$newid}, ".mysql_real_escape_string(content("{$ex[2]} :")).", ".mysql_real_escape_string($usernick).", {$ex[2]}, {$datestring});") or die(mysql_error());
+			mysql_query("DELETE FROM {$loggingtable} WHERE timestamp >= {$newdatestring};") or die(mysql_error());
 		}
 		
 		// Attempt to detect excess flooding and hacking
