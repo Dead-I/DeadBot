@@ -136,13 +136,14 @@ while(1) {
 			if ($count >= 1) {
 				$result = mysql_fetch_array($result);
 				$newid = $result['id'] + 1;
-				$datestring = date('ymdhis');
-				$newdatestring = $datestring - $logtime;
 			}else{
 				$newid = 1;
 			}
 			
-			mysql_query("INSERT INTO {$loggingtable} VALUES ({$newid}, '".mysql_real_escape_string(content("{$ex[2]} :"))."', '".mysql_real_escape_string($usernick)."', '{$ex[2]}', {$datestring});") or die(mysql_error());
+			$datestring = date('ymdhis');
+			$newdatestring = $datestring - $logtime;
+			
+			mysql_query("INSERT INTO {$loggingtable} VALUES ({$newid}, '".mysql_real_escape_string(content("{$ex[2]}"))."', '".mysql_real_escape_string($usernick)."', '{$ex[2]}', '{$datestring}');") or die(mysql_error());
 			mysql_query("DELETE FROM {$loggingtable} WHERE timestamp >= {$newdatestring};") or die(mysql_error());
 		}
 		
