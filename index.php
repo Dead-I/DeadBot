@@ -27,6 +27,10 @@ require "config.php";
 // Get the functions
 require "functions.php";
 
+// Connect to the dataabase
+if (!mysql_connect($dbhost, $dbuser, $dbpass)) echo "...database connection failed";
+if (!mysql_select_db($dbname)) echo "...database selection failed";
+
 // Output text that confirms the config/functions worked
 echo "...\n\n";
 
@@ -123,6 +127,17 @@ while(1) {
 		
 		// Detect if the message is privately messaged
 		if (strtolower($ex[2]) == 'deadbot') $ex[2] = $recipient;
+		
+		// Logging
+		if (find(",{$ex[2]},", $logchannels) == 1 && $ex[1] == "PRIVMSG") {
+			$result = mysql_query("SELECT FROM {$loggingtable} ORDER BY id DESC");
+			$result = mysql_fetch_array($result);
+			$newid = $result['id'] + 1;
+			$datestring = date('ymdhis');
+			$newdatestring = $datestring - $logtime;
+			mysql_query("INSERT INTO {$loggingtable} VALUES ({$newid}, ".content("{$ex[2]} :").", {$usernick}, {$ex[2]}, {$datestring});");
+			mysql_query("DELETE FROM {$loggingtable} WHERE timestamp >= {$newdatestring};");
+		}
 		
 		// Attempt to detect excess flooding and hacking
 		$current = date('ymdHis');
