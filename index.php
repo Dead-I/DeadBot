@@ -130,7 +130,7 @@ while(1) {
 		
 		// Logging
 		if (find("{$ex[2]},", $logchannels) == 1 && $ex[1] == "PRIVMSG") {
-			$result = mysql_query("SELECT * FROM {$loggingtable} ORDER BY id DESC");
+			$result = mysql_query("SELECT * FROM {$loggingtable} ORDER BY id DESC LIMIT 1;") or die(mysql_query());
 			$resultcount = mysql_num_rows($result);
 			
 			if ($resultcount >= 1) {
