@@ -71,13 +71,13 @@ $channel = explode(",", $channels);
 foreach($channel as $join) {
 	raw("JOIN {$join}");
 	sleep(2);
-	normal("DeadBot {$version} Loaded", $join);
+	if ($argv[1] != 'nospam') normal("DeadBot {$version} Loaded", $join);
 }
 
 // Join the staff channel
 if (find($staffchannel, $channels) == 0) raw("JOIN {$staffchannel} {$staffkey}");
 sleep(2);
-normal("Diagnostics Activated for DeadBot {$version}", $staffchannel);
+if ($argv[1] != 'nospam') normal("Diagnostics Activated for DeadBot {$version}", $staffchannel);
 
 // Echo the success message to confirm DeadBot's operation
 echo "###############################\n";
@@ -131,9 +131,10 @@ while(1) {
 		// Logging
 		if (find("{$ex[2]},", $logchannels) == 1 && $ex[1] == "PRIVMSG") {
 			$result = mysql_query("SELECT FROM {$loggingtable} ORDER BY id DESC");
-			$result = mysql_fetch_array($result);
+			$resultcount = mysql_num_rows($result);
 			
-			if (!empty($result['id'])) {
+			if ($count != 0) {
+				$result = mysql_fetch_array($result);
 				$newid = $result['id'] + 1;
 				$datestring = date('ymdhis');
 				$newdatestring = $datestring - $logtime;
