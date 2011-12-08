@@ -28,8 +28,8 @@ require "config.php";
 require "functions.php";
 
 // Connect to the dataabase
-if (!mysql_connect($dbhost, $dbuser, $dbpass)) echo "...database connection failed";
-if (!mysql_select_db($dbname)) echo "...database selection failed";
+mysql_connect($dbhost, $dbuser, $dbpass);
+mysql_select_db($dbname);
 
 // Output text that confirms the config/functions worked
 echo "...\n\n";
