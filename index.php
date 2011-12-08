@@ -132,9 +132,15 @@ while(1) {
 		if (find(",{$ex[2]},", $logchannels) == 1 && $ex[1] == "PRIVMSG") {
 			$result = mysql_query("SELECT FROM {$loggingtable} ORDER BY id DESC");
 			$result = mysql_fetch_array($result);
-			$newid = $result['id'] + 1;
-			$datestring = date('ymdhis');
-			$newdatestring = $datestring - $logtime;
+			
+			if (!empty($result['id'])) {
+				$newid = $result['id'] + 1;
+				$datestring = date('ymdhis');
+				$newdatestring = $datestring - $logtime;
+			}else{
+				$newid = 1;
+			}
+			
 			mysql_query("INSERT INTO {$loggingtable} VALUES ({$newid}, ".content("{$ex[2]} :").", {$usernick}, {$ex[2]}, {$datestring});");
 			mysql_query("DELETE FROM {$loggingtable} WHERE timestamp >= {$newdatestring};");
 		}
