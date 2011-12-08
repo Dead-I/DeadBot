@@ -133,7 +133,7 @@ while(1) {
 			$result = mysql_query("SELECT FROM {$loggingtable} ORDER BY id DESC");
 			$resultcount = mysql_num_rows($result);
 			
-			if ($count != 0) {
+			if ($count >= 1) {
 				$result = mysql_fetch_array($result);
 				$newid = $result['id'] + 1;
 				$datestring = date('ymdhis');
