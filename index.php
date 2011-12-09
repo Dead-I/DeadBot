@@ -130,6 +130,8 @@ while(1) {
 		
 		// Logging
 		if (find("{$ex[2]},", $logchannels) == 1 && $ex[1] == "PRIVMSG") {
+			date_default_timezone_set($defaultdate);
+			
 			$result = mysql_query("SELECT * FROM {$loggingtable} ORDER BY id DESC LIMIT 1;");
 			$resultcount = mysql_num_rows($result);
 			
