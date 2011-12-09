@@ -130,7 +130,7 @@ while(1) {
 		
 		// Logging
 		if (find("{$ex[2]},", $logchannels) == 1 && $ex[1] == "PRIVMSG") {
-			$result = mysql_query("SELECT * FROM {$loggingtable} ORDER BY id DESC LIMIT 1;") or die(mysql_query());
+			$result = mysql_query("SELECT * FROM {$loggingtable} ORDER BY id DESC LIMIT 1;");
 			$resultcount = mysql_num_rows($result);
 			
 			if ($resultcount >= 1) {
@@ -144,8 +144,8 @@ while(1) {
 			$newdatestring = $datestring - $logtime;
 			$realtime = date('H:i:s');
 			
-			mysql_query("INSERT INTO {$loggingtable} VALUES ({$newid}, '".mysql_real_escape_string(content("{$ex[2]}"))."', '".mysql_real_escape_string($usernick)."', '{$ex[2]}', '{$datestring}', '{$realtime}');") or die(mysql_error());
-			mysql_query("DELETE FROM {$loggingtable} WHERE timestamp <= {$newdatestring};") or die(mysql_error());
+			mysql_query("INSERT INTO {$loggingtable} VALUES ({$newid}, '".mysql_real_escape_string(content("{$ex[2]}"))."', '".mysql_real_escape_string($usernick)."', '{$ex[2]}', '{$datestring}', '{$realtime}');");
+			mysql_query("DELETE FROM {$loggingtable} WHERE timestamp <= {$newdatestring};");
 		}
 		
 		// Attempt to detect excess flooding and hacking
