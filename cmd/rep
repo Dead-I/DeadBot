@@ -25,6 +25,7 @@ if (empty($value)) {
 	}
 	
 	send($score);
+	unset($score);
 
 }elseif ($value == $usernick) {
 
