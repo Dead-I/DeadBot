@@ -146,7 +146,7 @@ while(1) {
 			$newdatestring = $datestring - $logtime;
 			$realtime = date('H:i:s');
 			
-			mysql_query("INSERT INTO {$loggingtable} VALUES ({$newid}, '".mysql_real_escape_string(content("{$ex[2]}"))."', '".mysql_real_escape_string($usernick)."', '{$ex[2]}', '{$datestring}', '{$realtime}');");
+			mysql_query("INSERT INTO {$loggingtable} VALUES ({$newid}, '".mysql_real_escape_string(htmlentities(content("{$ex[2]}")))."', '".mysql_real_escape_string(htmlentities($usernick))."', '{$ex[2]}', '{$datestring}', '{$realtime}');");
 			mysql_query("DELETE FROM {$loggingtable} WHERE timestamp <= {$newdatestring};");
 		}
 		
