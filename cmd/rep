@@ -36,7 +36,7 @@ if (empty($value)) {
 	send("Awww, thanks, but I'm already the best. :P");
 
 }else{
-
+	$value = mysql_real_escape_string($value);
 	$result = mysql_query("SELECT * FROM {$reptable} WHERE nick='{$value}';");
 	$count = mysql_num_rows($result);
 	if ($count == 0) {
