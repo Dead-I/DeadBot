@@ -31,6 +31,10 @@ if (empty($value)) {
 
 	send("You cannot add reputation to yourself - other people will decide whether you are making good contributions.");
 
+}elseif ($value == strtolower($nick)) {
+
+	send("Awww, thanks, but I'm already the best. :P");
+
 }else{
 
 	$result = mysql_query("SELECT * FROM {$reptable} WHERE nick='{$value}';");
