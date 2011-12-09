@@ -32,19 +32,20 @@ if (empty($value)) {
 
 }else{
 
-	$result = mysql_query("SELECT * FROM {$reptable} WHERE nick='{$value}';") or die(mysql_error());
+	$result = mysql_query("SELECT * FROM {$reptable} WHERE nick='{$value}';");
 	$count = mysql_num_rows($result);
 	if ($count == 0) {
-		mysql_query("INSERT INTO {$reptable} VALUES(".rand().", '{$value}', '1');") or die(mysql_error());
+		mysql_query("INSERT INTO {$reptable} VALUES(".rand().", '{$value}', '1');");
+		$newpoints = 1;
 	}else{
 		$row = mysql_fetch_array($result);
 		$newpoints = $row['points'] + 1;
-		mysql_query("UPDATE {$reptable} SET points='{$newpoints}' WHERE nick='{$value}';") or die(mysql_error());
+		mysql_query("UPDATE {$reptable} SET points='{$newpoints}' WHERE nick='{$value}';");
 	}
 	
-	$newusernick = $usernick;
-	$newusernick[0] = strtoupper($newusernick[0]);
+	$newvalue = $value;
+	$newvalue[0] = strtoupper($newvalue[0]);
 	
-	send("{$newusernick} now has {$newpoints} reputation. May you be lucky enough to receive reputation back in turn.");
+	send("{$newvalue} now has {$newpoints} reputation. May you be lucky enough to receive reputation back in turn.");
 	
 }
