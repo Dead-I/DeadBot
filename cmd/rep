@@ -32,14 +32,14 @@ if (empty($value)) {
 
 }else{
 
-	$result = mysql_query("SELECT * FROM {$reptable} WHERE nick='{$value}';");
+	$result = mysql_query("SELECT * FROM {$reptable} WHERE nick='{$value}';") or die(mysql_error());
 	$count = mysql_num_rows($result);
 	if ($count == 0) {
-		mysql_query("INSERT INTO {$reptable} VALUES(".rand().", '{$value}', '1');");
+		mysql_query("INSERT INTO {$reptable} VALUES(".rand().", '{$value}', '1');") or die(mysql_error());
 	}else{
 		$row = mysql_fetch_array($result);
 		$newpoints = $row['points'] + 1;
-		mysql_query("UPDATE {$reptable} SET points='{$newpoints}' WHERE nick='{$value}';");
+		mysql_query("UPDATE {$reptable} SET points='{$newpoints}' WHERE nick='{$value}';") or die(mysql_error());
 	}
 	
 	$newusernick = $usernick;
