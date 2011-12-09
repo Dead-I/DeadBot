@@ -20,7 +20,7 @@ if (empty($value)) {
 			break;
 		}
 		
-		$score = $score."{$position} {$row['nick']}. ";
+		$score = $score."{$position} {$row['nick']} ({$row['points']}). ";
 		$count = $count + 1;
 	}
 	
