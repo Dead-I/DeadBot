@@ -1,0 +1,50 @@
+if (empty($value)) {
+
+	send("If you find someone's message useful on the IRC, you can add reputation as a 'thank you'.");
+	
+	$result = mysql_query("SELECT * FROM {$reptable} ORDER BY points DESC LIMIT 3;");
+	$count = 1;
+	while($row = mysql_fetch_array($result)) {
+		
+		switch($count) {
+			case 1:
+			$position = '1st';
+			break;
+			
+			case 2:
+			$position = '2nd';
+			break;
+			
+			case 3:
+			$position = '3rd';
+			break;
+		}
+		
+		$score = $score."{$position} {$row['nick']}. ";
+		$count = $count + 1;
+	}
+	
+	send($score);
+
+}elseif ($value == $usernick) {
+
+	send("You cannot add reputation to yourself - other people will decide whether you are making good contributions.");
+
+}else{
+
+	$result = mysql_query("SELECT * FROM {$reptable} WHERE nick='{$value}';");
+	$count = mysql_num_rows($result);
+	if ($count == 0) {
+		mysql_query("INSERT INTO {$reptable} VALUES(".rand().", '{$value}', '1');");
+	}else{
+		$row = mysql_fetch_array($result);
+		$newpoints = $row['points'] + 1;
+		mysql_query("UPDATE {$reptable} SET points='{$newpoints}' WHERE nick='{$value}';");
+	}
+	
+	$newusernick = $usernick;
+	$newusernick[0] = strtoupper($newusernick[0]);
+	
+	send("{$newusernick} now has {$newpoints} reputation. May you be lucky enough to receive reputation back in turn.");
+	
+}
