@@ -138,7 +138,7 @@ while(1) {
 			if ($result->fetchColumn() >= 1) {
 				$result = $db->prepare("SELECT * FROM {$loggingtable} ORDER BY id DESC LIMIT 1;");
 				$result->execute();
-				$result = $conn->query($result);
+				$result = $db->query($result);
 				$newid = $result['id'] + 1;
 			}else{
 				$newid = 1;
