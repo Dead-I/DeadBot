@@ -35,24 +35,31 @@ if (empty($value)) {
 	send("Awww, thanks, but I'm already the best. :P");
 
 }else{
-	$result = $db->prepare("SELECT COUNT(*) FROM {$reptable} WHERE nick='{$value}';");
-	$result->execute();
-	if ($result->fetchColumn() == 0) {
-		$result = $db->prepare("INSERT INTO {$reptable} VALUES(".rand().", '{$value}', '1');");
-		$result->execute();
-		$newpoints = 1;
-	}else{
-		foreach ($db->query("SELECT * FROM {$reptable} WHERE nick='{$value}';") as $row) {
-			$row = mysql_fetch_array($result);
-			$newpoints = $row['points'] + 1;
+	
+	foreach ($db->query("SELECT * FROM {$reptable} WHERE nick='{$value}';") as $mainrow) {
+		if ($mainrow['fromnick'] == $usernick) {
+			send("You must spread your reputation around before you can rep this person again.");
+		}else{
+	
+			$result = $db->prepare("SELECT COUNT(*) FROM {$reptable} WHERE nick='{$value}';");
+			$result->execute();
+			if ($result->fetchColumn() == 0) {
+				$result = $db->prepare("INSERT INTO {$reptable} VALUES(".rand().", '".strip_tags($value)."', '1', '".$usernick."');");
+				$result->execute();
+				$newpoints = 1;
+			}else{
+				foreach ($db->query("SELECT * FROM {$reptable} WHERE nick='{$value}';") as $row) {
+					$row = mysql_fetch_array($result);
+					$newpoints = $row['points'] + 1;
+				}
+				$result = $db->prepare("UPDATE {$reptable} SET points='{$newpoints}', fromnick='{$usernick}' WHERE nick='{$value}';");
+				$result->execute();
+			}
+	
+			$newvalue = $value;
+			$newvalue[0] = strtoupper($newvalue[0]);
+		
+			send("{$newvalue} now has {$newpoints} reputation. May you be lucky enough to receive reputation back in turn.");
 		}
-		$result = $db->prepare("UPDATE {$reptable} SET points='{$newpoints}' WHERE nick='{$value}';");
-		$result->execute();
-	}
-	
-	$newvalue = $value;
-	$newvalue[0] = strtoupper($newvalue[0]);
-	
-	send("{$newvalue} now has {$newpoints} reputation. May you be lucky enough to receive reputation back in turn.");
-	
+	}	
 }
