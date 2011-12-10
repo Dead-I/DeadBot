@@ -27,10 +27,6 @@ require "config.php";
 // Get the functions
 require "functions.php";
 
-// Connect to the dataabase
-mysql_connect($dbhost, $dbuser, $dbpass);
-mysql_select_db($dbname);
-
 // Output text that confirms the config/functions worked
 echo "...\n\n";
 
@@ -42,6 +38,10 @@ if (!isset($installed) && $argv[1] != 'installed') {
 	echo "Thank you for using DeadBot!\n\n";
 	die;
 }
+
+// Connect to the dataabase
+$dsn = "mysql:host=$dbhost;port=$dbport;dbname=$dbname";
+$db = new PDO($dsn, $dbuser, $dbpass);
 
 // Ensure that the bot stays alive
 set_time_limit(0);
@@ -132,11 +132,13 @@ while(1) {
 		if (find("{$ex[2]},", $logchannels) == 1 && $ex[1] == "PRIVMSG") {
 			date_default_timezone_set($defaultdate);
 			
-			$result = mysql_query("SELECT * FROM {$loggingtable} ORDER BY id DESC LIMIT 1;");
-			$resultcount = mysql_num_rows($result);
+			$result = $db->prepare("SELECT COUNT(*) FROM {$loggingtable} ORDER BY id DESC LIMIT 1;");
+			$result->execute();
 			
-			if ($resultcount >= 1) {
-				$result = mysql_fetch_array($result);
+			if ($result->fetchColumn() >= 1) {
+				$result = $db->prepare("SELECT * FROM {$loggingtable} ORDER BY id DESC LIMIT 1;");
+				$result->execute();
+				$result = $conn->query($result);
 				$newid = $result['id'] + 1;
 			}else{
 				$newid = 1;
@@ -146,8 +148,11 @@ while(1) {
 			$newdatestring = $datestring - $logtime;
 			$realtime = date('H:i:s');
 			
-			mysql_query("INSERT INTO {$loggingtable} VALUES ({$newid}, '".mysql_real_escape_string(htmlentities(content("{$ex[2]}")))."', '".mysql_real_escape_string(htmlentities($usernick))."', '{$ex[2]}', '{$datestring}', '{$realtime}');");
-			mysql_query("DELETE FROM {$loggingtable} WHERE timestamp <= {$newdatestring};");
+			$result = $db->prepare("INSERT INTO {$loggingtable} VALUES ({$newid}, '".htmlentities(content("{$ex[2]}"))."', '".htmlentities($usernick)."', '{$ex[2]}', '{$datestring}', '{$realtime}');");
+			$result->execute();
+			
+			$result = $db->prepare("DELETE FROM {$loggingtable} WHERE timestamp <= {$newdatestring};");
+			$result->execute();
 		}
 		
 		// Attempt to detect excess flooding and hacking
