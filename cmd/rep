@@ -38,9 +38,9 @@ if (empty($value)) {
 	
 	$main = $db->prepare("SELECT * FROM {$reptable} WHERE nick='{$value}';");
 	$main->execute();
+	$mainrow = $main -> fetch()
 	
-	while ($mainrow = $main->fetchObject()) {
-		if ($mainrow->fromnick == $usernick) {
+		if ($mainrow["fromnick"] == $usernick) {
 			send("You must spread your reputation around before you can rep this person again.");
 		}else{
 	
