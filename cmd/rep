@@ -3,7 +3,8 @@ if (empty($value)) {
 	send("If you find someone's message useful on the IRC, you can add reputation as a 'thank you'.");
 	
 	$count = 1;
-	foreach ($db->query("SELECT * FROM {$reptable} ORDER BY points DESC LIMIT 3;") as $row) {
+	$result = $db->prepare("SELECT * FROM {$reptable} ORDER BY points DESC LIMIT 3;");
+	foreach ($result->execute as $row) {
 		
 		switch($count) {
 			case 1:
@@ -36,27 +37,27 @@ if (empty($value)) {
 
 }else{
 	
-	$main = $db->prepare("SELECT * FROM {$reptable} WHERE nick='{$value}';");
-	$main->execute();
+	$main = $db->prepare("SELECT * FROM {$reptable} WHERE nick=?;");
+	$main->execute(array($value));
 	$mainrow = $main -> fetch();
 	
 		if ($mainrow["fromnick"] == $usernick) {
 			send("You must spread your reputation around before you can rep this person again.");
 		}else{
 	
-			$result = $db->prepare("SELECT COUNT(*) FROM {$reptable} WHERE nick='{$value}';");
-			$result->execute();
+			$result = $db->prepare("SELECT COUNT(*) FROM {$reptable} WHERE nick=?;");
+			$result->execute(array($value));
 			if ($result->fetchColumn() == 0) {
-				$result = $db->prepare("INSERT INTO {$reptable} VALUES(".rand().", '".strip_tags($value)."', '1', '".$usernick."');");
-				$result->execute();
+				$result = $db->prepare("INSERT INTO {$reptable} VALUES(".rand().", ?, '1', '".$usernick."');");
+				$result->execute(array($value));
 				$newpoints = 1;
 			}else{
 				$result = $db->prepare("SELECT * FROM {$reptable} WHERE nick='{$value}';");
 				$result->execute();
 				$row = $result -> fetch();
 				$newpoints = $row["points"] + 1;
-				$result = $db->prepare("UPDATE {$reptable} SET points='{$newpoints}', fromnick='{$usernick}' WHERE nick='{$value}';");
-				$result->execute();
+				$result = $db->prepare("UPDATE {$reptable} SET points='{$newpoints}', fromnick='{$usernick}' WHERE nick=?;");
+				$result->execute(array($value));
 			}
 	
 			$newvalue = $value;
