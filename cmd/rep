@@ -64,5 +64,4 @@ if (empty($value)) {
 		
 			send("{$newvalue} now has {$newpoints} reputation. May you be lucky enough to receive reputation back in turn.");
 		}
-	}	
 }
