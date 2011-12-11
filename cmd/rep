@@ -36,8 +36,11 @@ if (empty($value)) {
 
 }else{
 	
-	foreach ($db->query("SELECT * FROM {$reptable} WHERE nick='{$value}';") as $mainrow) {
-		if ($mainrow['fromnick'] == $usernick) {
+	$main = $db->prepare("SELECT * FROM {$reptable} WHERE nick='{$value}';");
+	$main->execute();
+	
+	while ($mainrow = $main->fetchObject()) {
+		if ($mainrow->fromnick == $usernick) {
 			send("You must spread your reputation around before you can rep this person again.");
 		}else{
 	
