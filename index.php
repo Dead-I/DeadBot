@@ -148,7 +148,7 @@ while(1) {
 			$newdatestring = $datestring - $logtime;
 			$realtime = date('H:i:s');
 			
-			$result = $db->prepare("INSERT INTO {$loggingtable} VALUES ({$newid}, '".htmlentities(content("{$ex[2]}"))."', '".htmlentities($usernick)."', '{$ex[2]}', '{$datestring}', '{$realtime}');");
+			$result = $db->prepare("INSERT INTO {$loggingtable} VALUES ('".htmlentities(content("{$ex[2]}"))."', '".htmlentities($usernick)."', '{$ex[2]}', '{$datestring}', '{$realtime}');");
 			$result->execute();
 			
 			$result = $db->prepare("DELETE FROM {$loggingtable} WHERE timestamp <= {$newdatestring};");
