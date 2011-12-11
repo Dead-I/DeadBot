@@ -41,14 +41,14 @@ if (empty($value)) {
 	$main->execute(array($value));
 	$mainrow = $main -> fetch();
 	
-		if ($mainrow["fromnick"] == $usernick) {
+		if ($mainrow["fromnick"] == $userinfo[1]) {
 			send("You must spread your reputation around before you can rep this person again.");
 		}else{
 	
 			$result = $db->prepare("SELECT COUNT(*) FROM {$reptable} WHERE nick=?;");
 			$result->execute(array($value));
 			if ($result->fetchColumn() == 0) {
-				$result = $db->prepare("INSERT INTO {$reptable} VALUES(".rand().", ?, '1', '".$usernick."');");
+				$result = $db->prepare("INSERT INTO {$reptable} VALUES(".rand().", ?, '1', '".$userinfo[1]."');");
 				$result->execute(array($value));
 				$newpoints = 1;
 			}else{
@@ -56,7 +56,7 @@ if (empty($value)) {
 				$result->execute();
 				$row = $result -> fetch();
 				$newpoints = $row["points"] + 1;
-				$result = $db->prepare("UPDATE {$reptable} SET points='{$newpoints}', fromnick='{$usernick}' WHERE nick=?;");
+				$result = $db->prepare("UPDATE {$reptable} SET points='{$newpoints}', fromnick='{$userinfo[1]}' WHERE nick=?;");
 				$result->execute(array($value));
 			}
 	
