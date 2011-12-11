@@ -51,10 +51,10 @@ if (empty($value)) {
 				$result->execute();
 				$newpoints = 1;
 			}else{
-				foreach ($db->query("SELECT * FROM {$reptable} WHERE nick='{$value}';") as $row) {
-					$row = mysql_fetch_array($result);
-					$newpoints = $row['points'] + 1;
-				}
+				$result = $db->prepare("SELECT * FROM {$reptable} WHERE nick='{$value}';");
+				$result->execute();
+				$row = $result -> fetch();
+				$newpoints = $row["points"] + 1;
 				$result = $db->prepare("UPDATE {$reptable} SET points='{$newpoints}', fromnick='{$usernick}' WHERE nick='{$value}';");
 				$result->execute();
 			}
