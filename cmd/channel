@@ -1,6 +1,35 @@
 if (isset($value)) {
 	if ($admin == 1) {
-		raw("CS {$value} {$ex[2]} {$ex[6]}");
+
+		switch($value) {
+
+			case 'voice':
+			$mode = '+v';
+			break;
+
+			case 'devoice':
+			$mode = '-v';
+			break;
+
+			case 'halfop':
+			$mode = '+h';
+			break;
+
+			case 'dehalfop':
+			$mode = '-h';
+			break;
+
+			case 'op':
+			$mode = '+o';
+			break;
+
+			case 'deop':
+			$mode = '-o';
+			break;
+
+		}
+
+		raw("MODE {$ex[2]} {$mode} {$ex[6]}");
 		if ($ex[2] != $staffchannel) normal("The user ".trim($ex[6])." was {$value}ed by {$usernick} in {$ex[2]}.", $staffchannel);
 	}else{
 		send("Sorry, only the bot admins have the ability to run this command.");
