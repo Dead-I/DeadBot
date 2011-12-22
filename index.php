@@ -159,10 +159,12 @@ while(1) {
 		
 		// If a user is joined, check for an on-join event
 		if ($ex[1] == 'JOIN' && $usernick != $nick) {
-			if (file_exists("join/".substr($ex[2], 2))) {
+			echo "Caught";
+			if (file_exists("join/".str_replace(array('#', ':'), $ex[2]))) {
 			
 				try{
-					eval(file_get_contents("join/".substr($ex[2], 2)));
+					echo "Caught2";
+					eval(file_get_contents("join/".str_replace(array('#', ':'), $ex[2])));
 				} catch (Exception $e) {
 					normal($e->getMessage(), $ex[2]);
 				}
