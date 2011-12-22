@@ -167,8 +167,7 @@ while(1) {
 				} catch (Exception $e) {
 					normal($e->getMessage(), $ex[2]);
 				}
-				
-			}
+		
 		}
 		
 		// If the command was found, execute the external command
