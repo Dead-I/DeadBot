@@ -157,6 +157,19 @@ while(1) {
 		// Attempt to detect excess flooding and hacking
 		$current = date('ymdHis');
 		
+		// If a user is joined, check for an on-join event
+		if ($ex[1] == 'JOIN') {
+			if (file_exists("{$dirname}/{$command}")) {
+			
+				try{
+					eval(file_get_contents("join/".substr($ex[2], 1)));
+				} catch (Exception $e) {
+					normal($e->getMessage(), $ex[2]);
+				}
+				
+			}
+		}
+		
 		// If the command was found, execute the external command
 		if (($direct == strtolower($nick) || $direct == strtolower($nick).':' || $direct == $shortdirect) && (find(",{$recipient}", $ignorelist) != 1) && (!(($current - $lastmsg) < 1 && $abuser == $userinfo[0]) && $recipient[0] != '!')) {
 			$dirname = str_replace("#", "", $ex[2]);
