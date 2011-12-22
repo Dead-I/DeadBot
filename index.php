@@ -158,11 +158,11 @@ while(1) {
 		$current = date('ymdHis');
 		
 		// If a user is joined, check for an on-join event
-		if ($ex[1] == 'JOIN') {
-			if (file_exists("{$dirname}/{$command}")) {
+		if ($ex[1] == 'JOIN' && $usernick != $nick) {
+			if (file_exists("{$dirname}/{$command}") && $direct) {
 			
 				try{
-					eval(file_get_contents("join/".substr($ex[2], 1)));
+					eval(file_get_contents("join/".substr($ex[2], 2)));
 				} catch (Exception $e) {
 					normal($e->getMessage(), $ex[2]);
 				}
