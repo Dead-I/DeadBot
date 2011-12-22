@@ -159,7 +159,7 @@ while(1) {
 		
 		// If a user is joined, check for an on-join event
 		if ($ex[1] == 'JOIN' && $usernick != $nick) {
-			if (file_exists("join/".substr($ex[2], 2)) && $direct) {
+			if (file_exists("join/".substr($ex[2], 2))) {
 			
 				try{
 					eval(file_get_contents("join/".substr($ex[2], 2)));
