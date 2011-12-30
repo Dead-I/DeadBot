@@ -4,7 +4,8 @@ if (empty($value)) {
 	
 	$count = 1;
 	$result = $db->prepare("SELECT * FROM {$reptable} ORDER BY points DESC LIMIT 3;");
-	foreach ($result->execute as $row) {
+	$result->execute();
+	while ($row = $result->fetch()) {
 		
 		switch($count) {
 			case 1:
