@@ -15,9 +15,6 @@
 // Get the version of the bot - please leave this intact
 $version = '1.0 STABLE';
 
-// Error reporting settings
-error_reporting(E_ALL ^ E_NOTICE);
-
 // Output an initializing text - helpful for debugging
 echo "\nInitializing";
 
@@ -39,9 +36,11 @@ if (!isset($installed) && $argv[1] != 'installed') {
 	die;
 }
 
+if ($argv[1] == 'log') error_reporting(0);
+
 // Connect to the dataabase
 $dsn = "mysql:host=$dbhost;port=$dbport;dbname=$dbname";
-$db = new PDO($dsn, $dbuser, $dbpass);
+$db = new PDO($dsn, $dbuser, $dbpass, array(PDO::ATTR_PERSISTENT => true));
 
 // Ensure that the bot stays alive
 set_time_limit(0);
@@ -172,6 +171,10 @@ while(1) {
 		
 		// If the command was found, execute the external command
 		if (($direct == strtolower($nick) || $direct == strtolower($nick).':' || $direct == $shortdirect) && (find(",{$recipient}", $ignorelist) != 1) && (!(($current - $lastmsg) < 1 && $abuser == $userinfo[0]) && $recipient[0] != '!')) {
+			
+			// Logging feature
+			if ($argv[1] == 'log') echo nl2br($data);
+			
 			$dirname = str_replace("#", "", $ex[2]);
 			
 			if (file_exists("{$dirname}/{$command}")) {
