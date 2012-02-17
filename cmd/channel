@@ -12,7 +12,7 @@ if ($value == 'ban') {
 
 	if ($admin == 1) {
 
-		if (!isset($ex[6]) || empty($ex[6])) $value = $usernick;
+		if (!isset($ex[6]) || empty($ex[6])) $ex[6] = $usernick;
 
 		switch($value) {
 
