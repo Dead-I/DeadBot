@@ -1,11 +1,11 @@
 if ($value == 'ban') {
 
-	raw("MODE {$ex[2]} +b {$ex[6]}!*@*");
+	raw("MODE {$ex[2]} +b ".trim($ex[6])."!*@*");
 	if ($ex[2] != $staffchannel) normal("The user ".trim($ex[6])." was banned by {$usernick} in {$ex[2]}.", $staffchannel);
 
 }elseif ($value == 'kick') {
 
-	raw("KICK {$ex[2]} {$ex[6]} :Your behavior is not conducive to the desired environment. Requested by {$usernick}");
+	raw("KICK {$ex[2]} ".trim($ex[6])." :Your behavior is not conducive to the desired environment. Requested by {$usernick}");
 	if ($ex[2] != $staffchannel) normal("The user ".trim($ex[6])." was kicked by {$usernick} in {$ex[2]}.", $staffchannel);
 
 }else{
