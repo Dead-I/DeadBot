@@ -1,5 +1,18 @@
-if (isset($value)) {
+if ($value == 'ban') {
+
+	raw("MODE {$ex[2]} +b {$ex[6]}!*@*");
+	if ($ex[2] != $staffchannel) normal("The user ".trim($ex[6])." was banned by {$usernick} in {$ex[2]}.", $staffchannel);
+
+}elseif ($value == 'kick') {
+
+	raw("KICK {$ex[2]} {$ex[6]} :Your behavior is not conducive to the desired environment. Requested by {$usernick}");
+	if ($ex[2] != $staffchannel) normal("The user ".trim($ex[6])." was kicked by {$usernick} in {$ex[2]}.", $staffchannel);
+
+}else{
+
 	if ($admin == 1) {
+
+		if (!isset($ex[6]) || empty($ex[6])) $value = $usernick;
 
 		switch($value) {
 
@@ -35,6 +48,3 @@ if (isset($value)) {
 		send("Sorry, only the bot admins have the ability to run this command.");
 		if ($ex[2] != $staffchannel) normal("The channel command was requested in {$ex[2]}, but {$usernick} did not have the appropriate privileges.", $staffchannel);
 	}
-}else{
-	send("You can voice, halfop, op, devoice, dehalfop and deop people using this command if DeadBot has the appropriate channel priviledges.");
-}
