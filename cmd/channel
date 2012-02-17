@@ -48,3 +48,4 @@ if ($value == 'ban') {
 		send("Sorry, only the bot admins have the ability to run this command.");
 		if ($ex[2] != $staffchannel) normal("The channel command was requested in {$ex[2]}, but {$usernick} did not have the appropriate privileges.", $staffchannel);
 	}
+}
