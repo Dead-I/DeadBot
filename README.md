@@ -6,11 +6,16 @@ to rejoin the channel in the event that he is kicked. DeadBot has an easy-to-use
 setup wizard which you may use to easily install DeadBot and customize it
 appropriately.
 
-## Currently Under Development ##
-This stable version of DeadBot is currently under construction, therefore it may not
-completely function correctly or as predicted. If you wish to use DeadBot as your own
-IRC bot, you can try using the development project (Dead-i/DeadBot) on GitHub or wait
-until the Stable version is complete. Thank you.
+## No Longer Under Development ##
+DeadBot was a project back from when I was first starting to explore the depths of
+PHP for this kind of purpose. The project was started in 2011; since then I have
+been focusing on lots of different projects, some of which involve PHP but I have
+been looking into lots of other programming languages too. I've become I lot more
+experienced in PHP since this project, and focused on CSS for designing sites. If
+I ever do continue this project again, I would probably rewrite it from scratch.
+
+Nevertheless, this project is no longer under development and is no longer
+supported. My prototype bot is located in another branch. Thank you! ~Dead-i
 
 ## License ##
 This software is licensed under the CreativeCommons Attribution-ShareAlike license,
