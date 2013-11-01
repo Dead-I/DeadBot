@@ -1,7 +1,0 @@
-$timeonline = time() - $startseconds;
-$days = $timeonline / 86400;
-$hour = ($timeonline % 86400) / 3600;
-$mins = ($timeonline % 86400 % 3600) / 60;
-$secs = $timeonline % 86400 % 3600 % 60;
-
-send("I have been connected for: ".floor($days)." days, ".floor($hour)." hours, ".floor($mins)." minutes and ".floor($secs)." seconds.");

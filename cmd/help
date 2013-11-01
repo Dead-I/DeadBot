@@ -1,3 +1,0 @@
-send("Here are the valid commands that can be performed on me. Start all commands with '".strtolower($nick)."' or '{$shortdirect}'.");
-send("about, status, calc, random, date, password, welcome, gsearch, gresult, translate, sync");
-send("For additional help please visit my GitHub page. For admin commands use 'deadbot adminhelp'.");

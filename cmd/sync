@@ -1,2 +1,0 @@
-sync();
-send("Administrators and trusted hostmasks have been synchronized");

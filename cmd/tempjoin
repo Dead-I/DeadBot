@@ -1,8 +1,0 @@
-if ($admin == 1) {
-	raw("JOIN {$value}");
-	send("DeadBot has now joined {$value}. If you would like DeadBot to automatically join this channel, please modify the configuration file accordingly.");
-	normal("The tempjoin command was successfully used by {$usernick} in {$ex[2]} for {$value}.", $staffchannel);
-}else{
-	send("Sorry, only the bot admins have the ability to run this command.");
-	normal("The tempjoin command was requested in {$ex[2]} for {$value}, but {$usernick} did not have the appropriate privileges.", $staffchannel);
-}

@@ -1,6 +1,0 @@
-if ($admin == 1) {
-	raw("QUIT :Shutting down as requested by an admin");
-	die;
-}else{
-	send("Sorry, only the bot admins have the ability to run this command.");
-}

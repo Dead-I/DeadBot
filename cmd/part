@@ -1,8 +1,0 @@
-if ($admin == 1) {
-	raw("PART {$value}");
-	send("DeadBot has left {$value}.");
-	normal("The part command was successfully used by {$usernick} in {$ex[2]} for {$value}.", $staffchannel);
-}else{
-	send("Sorry, only the bot admins have the ability to run this command.");
-	normal("The part command was requested in {$ex[2]} for {$value}, but {$usernick} did not have the appropriate privileges.", $staffchannel);
-}
